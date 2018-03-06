@@ -19,3 +19,6 @@ application/logs/*
 
 ### IDE
 .idea
+
+### OS
+.DS_Store
