@@ -8,6 +8,7 @@ bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
+bootstrap/cache/
 public/storage
 public/hot
 storage/*.key
@@ -25,5 +26,7 @@ Homestead.json
 
 ### OS
 .DS_Store
+
+
 
 

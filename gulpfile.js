@@ -26,7 +26,8 @@ elixir(mix => {
         'resources/assets/vendor/metisMenu/jquery.metisMenu.js',
         'resources/assets/vendor/slimscroll/jquery.slimscroll.min.js',
         'resources/assets/vendor/pace/pace.min.js',
-        'resources/assets/js/app.js'
+        'resources/assets/js/app.js',
+        'resources/assets/js/oauth-jaccount.js'
     ], 'public/js/app.js', './');
 
 });
