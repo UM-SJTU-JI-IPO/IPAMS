@@ -1,3 +1,4 @@
+{{-- This is the left hand major navigation tab --}}
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
@@ -15,7 +16,7 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    JI
                 </div>
             </li>
             <li class="{{ isActiveRoute('main') }}">
