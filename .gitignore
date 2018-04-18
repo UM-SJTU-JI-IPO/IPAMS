@@ -24,6 +24,9 @@ Homestead.json
 ### IDE
 .idea
 
+### Project
+package-lock.json
+
 ### OS
 .DS_Store
 
