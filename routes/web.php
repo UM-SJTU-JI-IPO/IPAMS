@@ -13,3 +13,6 @@
 
 Route::get('/', 'HomeController@index')->name("main");
 Route::get('/minor', 'HomeController@minor')->name("minor");
+
+Route::get('login/github', 'Auth\LoginController@redirectToProvider');
+Route::get('login/loggedin', 'Auth\LoginController@handleProviderCallback');
