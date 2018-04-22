@@ -7,7 +7,8 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.5.*",
-        "laravel/socialite": "^3.0"
+        "laravel/socialite": "^3.0",
+        "socialiteproviders/generators": "^4.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

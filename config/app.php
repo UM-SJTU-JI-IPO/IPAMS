@@ -163,8 +163,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        //User Customized Service Provider
+        //User Customized Service Provider for Socialite and Socialite Provider
         Laravel\Socialite\SocialiteServiceProvider::class,
+        SocialiteProviders\Generators\GeneratorsServiceProvider::class,
 
         /*
          * Package Service Providers...
