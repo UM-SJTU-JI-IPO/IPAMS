@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0309c0e1158db20788f6368a6dc2532e",
+    "content-hash": "4b102174e1bfad86688ca740fffcce5d",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1245,6 +1245,55 @@
                 "uuid"
             ],
             "time": "2018-01-20T00:28:24+00:00"
+        },
+        {
+            "name": "socialiteproviders/generators",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Generators.git",
+                "reference": "fb0bf9e6828a10183630fb72788d5fe5cdfcc0ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/SocialiteProviders/Generators/fb0bf9e6828a10183630fb72788d5fe5cdfcc0ed.zip",
+                "reference": "fb0bf9e6828a10183630fb72788d5fe5cdfcc0ed",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.5.* || 5.6.*",
+                "php": "^5.6 || ^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "SocialiteProviders\\Generators\\GeneratorsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Generators\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de",
+                    "homepage": "https://brianfaust.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Artisan Generators for OAuth1/OAuth2 Providers",
+            "time": "2018-02-09T07:42:11+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
