@@ -39,7 +39,7 @@ return [
     'github' => [
         'client_id' => env('0f128be32406889e0370'),         // Your GitHub Client ID
         'client_secret' => env('3c093c0aa930c22fc702850786a3c073bb2827b6'), // Your GitHub Client Secret
-        'redirect' => 'http://umji.sjtu.edu.cn/global/apply/loggedin',
+        'redirect' => 'http://ipams.test/login/github/callback',
     ],
 
 ];
