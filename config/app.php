@@ -163,7 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-//      User Customized Service Provider
+        //User Customized Service Provider
         Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
@@ -229,7 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-//       User Added Alias
+        //User Added Alias
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
