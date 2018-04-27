@@ -164,11 +164,12 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         //User Customized Service Provider for Socialite and Socialite Provider
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        //Laravel\Socialite\SocialiteServiceProvider::class,
         /*
            Need to remove Laravel\Socialite\SocialiteServiceProvider::class before use
            SocialiteProviders\Manager\ServiceProvider::class,
         */
+        \SocialiteProviders\Manager\ServiceProvider::class,
         SocialiteProviders\Generators\GeneratorsServiceProvider::class,
 
         /*

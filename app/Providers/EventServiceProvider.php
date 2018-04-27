@@ -16,6 +16,11 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
+        // For Socialite Providers
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // add your listeners (aka providers) here
+            'SocialiteProviders\\Jaccount\\JaccountExtendSocialite@handle',
+        ],
     ];
 
     /**
