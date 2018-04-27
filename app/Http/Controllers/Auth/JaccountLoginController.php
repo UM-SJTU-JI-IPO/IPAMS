@@ -10,7 +10,7 @@ use Socialite;
 class JaccountLoginController extends Controller
 {
     /**
-     * Redirect the user to the GitHub authentication page.
+     * Redirect the user to the Jaccount authentication page.
      *
      * @return Response
      */
@@ -20,7 +20,7 @@ class JaccountLoginController extends Controller
     }
 
     /**
-     * Obtain the user information from GitHub.
+     * Obtain the user information from Jaccount.
      *
      * @return Response
      */
@@ -30,6 +30,7 @@ class JaccountLoginController extends Controller
 
         // $user->token;
 
-        dd($user->token);
+        //dd($user->token);
+        dd($user);
     }
 }
