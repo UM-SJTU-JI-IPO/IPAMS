@@ -35,11 +35,17 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
-//  Laravel/Socialite Configuration
+    //Laravel/Socialite Configuration
     'github' => [
-        'client_id' => env('0f128be32406889e0370'),         // Your GitHub Client ID
-        'client_secret' => env('3c093c0aa930c22fc702850786a3c073bb2827b6'), // Your GitHub Client Secret
-        'redirect' => 'http://ipams.test/login/github/callback',
+        'client_id' => env('GITHUB_CLIENT_ID'),         // Your GitHub Client ID
+        'client_secret' => env('GITHUB_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => env('GITHUB_CALLBACK'),
+    ],
+
+    'jaccount' => [
+        'client_id' => env('JACCOUNT_CLIENT_ID'),
+        'client_secret' => env('JACCOUNT_CLIENT_SECRET'),
+        'redirect' => env('JACCOUNT_CALLBACK'),
     ],
 
 ];
