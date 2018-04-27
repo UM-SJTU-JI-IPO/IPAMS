@@ -45,7 +45,8 @@ class Provider extends AbstractProvider implements ProviderInterface
             ],
         ]);
 
-        return json_decode($response->getBody(), true);
+        $jset = json_decode($response->getBody(), true);
+        return $jset['entities'][0];
     }
 
     /**
