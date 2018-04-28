@@ -28,7 +28,9 @@ class JaccountLoginController extends Controller
     {
         $user = Socialite::driver('jaccount')->user();
 
-        // $user->token;
+        // OAuth One Providers
+        $token = $user->token;
+        $refreshToken = $user->refreshToken;
 
         //dd($user->token);
         dd($user);
