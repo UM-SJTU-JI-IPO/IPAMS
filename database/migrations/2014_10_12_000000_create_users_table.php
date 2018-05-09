@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('studentID');
             $table->string('name');
             $table->string('userType');
-            $table->integer('birthDay');
+            $table->integer('birthDate');
             $table->integer('birthMonth');
             $table->integer('birthYear');
             $table->string('birthday');
