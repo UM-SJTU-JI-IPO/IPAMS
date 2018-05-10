@@ -1,4 +1,8 @@
-@extends('layouts.app')
+@if (isset($authUser))
+    @extends('layouts.app', compact('authUser'))
+@else
+    @extends('layouts.app')
+@endif
 
 @section('title', 'Main page')
 

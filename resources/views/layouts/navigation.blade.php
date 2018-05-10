@@ -12,7 +12,11 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="#">Logout</a></li>
+                        @if (isset($authUser))
+                            <li><a href="#"> {{ $authUser->name }}} Logout</a></li>
+                        @else
+                            <li><a href="#">Login</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="logo-element">

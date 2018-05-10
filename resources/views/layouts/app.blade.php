@@ -16,7 +16,11 @@
     <div id="wrapper">
 
         <!-- Navigation -->
-        @include('layouts.navigation')
+        @if (isset($authUser))
+            @include('layouts.navigation', compact('authUser'))
+        @else
+            @include('layouts.navigation')
+        @endif
 
         <!-- Page wraper -->
         <div id="page-wrapper" class="gray-bg">
