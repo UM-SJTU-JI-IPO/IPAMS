@@ -28,8 +28,6 @@ class CreateUsersTable extends Migration
             $table->string('mobile');
             $table->string('idCardType');
             $table->string('idCardNo');
-            $table->string('accessToken');
-            $table->string('refreshToken');
             $table->rememberToken();
             $table->timestamps();
         });

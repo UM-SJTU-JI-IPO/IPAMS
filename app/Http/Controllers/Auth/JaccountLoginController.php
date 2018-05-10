@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+
 use App\Http\Controllers\Controller;
 use App\User;
 
-use Auth;
-use View;
 use Socialite;
 
 
 
 class JaccountLoginController extends Controller
 {
+    /*
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    */
+
+
     /**
      * Redirect the user to the Jaccount authentication page.
      *
@@ -31,72 +39,69 @@ class JaccountLoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('jaccount')->user();
+        // Get user
+        $provider = 'jaccount';
+        $user = Socialite::driver($provider)->user();
 
         // OAuth One Providers
         $token = $user->token;
         $refreshToken = $user->refreshToken;
 
-        // validate the info
+        $user = $user->user;
 
-        // create the user
-
-        // sign the user in
-
-        // redirect to home
-
-        //dd($user->token);
-        dd($user);
-    }
-
-    /*
-     * Callback with User's data
-     * @param  string $provider Returns either twitter or github
-     * @return array User's data
-
-    public function getUser($provider)
-    {
-        $user = Socialize::with($provider)->user();
-
+        // Check if signed in
         $authUser = $this->findOrCreateUser($user, $provider);
 
+        // sign the user in
         Auth::login($authUser, true);
 
-        return view('pages.account', compact('authUser'));
+        // redirect to home
+        //return view('home.index', compact('authUser'));
+        return redirect()->route('main');
     }
-
-
-
-     * Find User and return or Create User and return
-     * @param  Object $user
-     * @param  String $provider Returns either Twitter or Github
-     * @return array User's data
 
     private function findOrCreateUser($user, $provider)
     {
-        if ($authUser = User::where('id', $user->id)->first()) {
+        // no idea why could not use uuid as where column
+        if ($authUser = User::where('studentID', $user['code'])->first()) {
             $authUser->update([
-                'id'        => $user->id,
-                'avatar'    => $user->avatar,
-                'name'      => $user->name,
-                'username'  => $user->nickname,
-                'url'       => 'http://' . $provider . '.com/' . $user->nickname
+                'studentID' => $user['code'],
+                'name'      => $user['name'],
+                'userType'  => $user['userType'],
+                'birthDate' => $user['birthday']['birthDay'],
+                'birthMonth'=> $user['birthday']['birthMonth'],
+                'birthYear' => $user['birthday']['birthYear'],
+                'birthday'  => $user['birthday']['birthYear'] . '/' . $user['birthday']['birthMonth'] . '/' . $user['birthday']['birthDay'],
+                'gender'    => $user['gender'],
+                'email'     => $user['email'],
+                'mobile'    => $user['mobile'],
+                'idCardType'=> $user['cardType'],
+                'idCardNo'  => $user['cardNo']
             ]);
 
             return $authUser;
         }
 
+        //dd($user);
+
         return User::create([
-            'id'        => $user->id,
-            'avatar'    => $user->avatar,
-            'name'      => $user->name,
-            'username'  => $user->nickname,
-            'url'       => 'http://' . $provider . '.com/' . $user->nickname,
-            'provider'  => $provider
+            'id'        => $user['id'],
+            'uuid'      => $user['unionId'],
+            'studentID' => $user['code'],
+            'name'      => $user['name'],
+            'userType'  => $user['userType'],
+            'birthDate' => $user['birthday']['birthDay'],
+            'birthMonth'=> $user['birthday']['birthMonth'],
+            'birthYear' => $user['birthday']['birthYear'],
+            'birthday'  => $user['birthday']['birthYear'] . '/' . $user['birthday']['birthMonth'] . '/' . $user['birthday']['birthDay'],
+            'gender'    => $user['gender'],
+            'email'     => $user['email'],
+            'mobile'    => $user['mobile'],
+            'idCardType'=> $user['cardType'],
+            'idCardNo'  => $user['cardNo']
         ]);
 
 
     }
-    */
 
 }
