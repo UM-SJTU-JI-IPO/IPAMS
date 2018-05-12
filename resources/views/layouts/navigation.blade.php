@@ -7,12 +7,21 @@
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold">Example user</strong>
-                            </span> <span class="text-muted text-xs block">Example menu <b class="caret"></b></span>
+                                @if (Auth::check())
+                                    <strong class="font-bold">{{ Auth::user()->name }}</strong>
+                                @else
+                                    <strong class="font-bold">Log in Here</strong>
+                                @endif
+                            </span> <span class="text-muted text-xs block">User Menu <b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="#">Logout</a></li>
+                        @if (Auth::check())
+                            <li><a href="/logout"><i class="fa fa-sign-out"></i> Log out</a></li>
+                        @else
+                            <li><a href="/login/jaccount"><i class="fa fa-sign-in"></i> Log in</a></li>
+                        @endif
+
                     </ul>
                 </div>
                 <div class="logo-element">
