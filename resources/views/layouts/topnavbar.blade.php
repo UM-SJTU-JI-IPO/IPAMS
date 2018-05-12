@@ -10,9 +10,15 @@
         </div>
         <ul class="nav navbar-top-links navbar-right">
             <li>
-                <a href="#">
-                    <i class="fa fa-sign-out"></i> Log out
-                </a>
+                @if (Auth::check())
+                    <a href="/logout">
+                        {{ Auth::user()->name }} <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                @else
+                    <a href="/login/jaccount">
+                        <i class="fa fa-sign-in"></i> Log in with Jaccount
+                    </a>
+                @endif
             </li>
         </ul>
     </nav>
