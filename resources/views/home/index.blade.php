@@ -8,7 +8,7 @@
                     <div class="col-lg-12">
                         <div class="text-center m-t-lg">
                             <h1>
-                                Welcome to IAPAMS
+                                Welcome to IPAMS
                             </h1>
                             <h2>
                                 To Infinity and Beyond
