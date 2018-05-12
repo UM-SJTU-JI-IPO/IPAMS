@@ -1,8 +1,4 @@
-@if (isset($authUser))
-    @extends('layouts.app', compact('authUser'))
-@else
-    @extends('layouts.app')
-@endif
+@extends('layouts.app')
 
 @section('title', 'Main page')
 
@@ -12,10 +8,13 @@
                     <div class="col-lg-12">
                         <div class="text-center m-t-lg">
                             <h1>
-                                Welcome in INSPINIA Laravel Starter Project
+                                Welcome to IAPAMS
                             </h1>
+                            <h2>
+                                To Infinity and Beyond
+                            </h2>
                             <small>
-                                It is an application skeleton for a typical web app. You can use it to quickly bootstrap your webapp projects.
+                                A UM - SJTU JI Internation Program Application and Management System.
                             </small>
                         </div>
                     </div>
