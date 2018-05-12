@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index')->name("main");
 Route::get('/user', 'HomeController@user')->name("user");
 Route::get('/dashboard', 'HomeController@dashboard')->name("dashboard");
 
+Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
+
 Route::get('/login/github', 'Auth\GithubLoginController@redirectToProvider');
 Route::get('/login/github/callback', 'Auth\GithubLoginController@handleProviderCallback');
 
