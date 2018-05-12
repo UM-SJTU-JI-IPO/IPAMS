@@ -28,12 +28,18 @@
                     JI
                 </div>
             </li>
-            <li class="{{ isActiveRoute('main') }}">
-                <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Main view</span></a>
-            </li>
-            <li class="{{ isActiveRoute('minor') }}">
-                <a href="{{ url('/minor') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Minor view</span> </a>
-            </li>
+            @if (Auth::check())
+                <li class="{{ isActiveRoute('dashboard') }}">
+                    <a href="{{ url('/dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span> </a>
+                </li>
+                <li class="{{ isActiveRoute('user') }}">
+                    <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Personal Info</span> </a>
+                </li>
+            @else
+                <li class="{{ isActiveRoute('main') }}">
+                    <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Welcome</span></a>
+                </li>
+            @endif
         </ul>
 
     </div>
