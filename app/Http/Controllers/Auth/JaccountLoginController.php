@@ -57,7 +57,7 @@ class JaccountLoginController extends Controller
 
         // redirect to home
         //return view('home.index', compact('authUser'));
-        return redirect()->route('main');
+        return redirect()->route('dashboard');
     }
 
     private function findOrCreateUser($user, $provider)
