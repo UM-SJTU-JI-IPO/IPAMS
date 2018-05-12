@@ -8,6 +8,23 @@ This is the website for application website of [UM-SJTU Joint Institute Internat
 
 Please check [***wiki***](https://github.com/JI-IPO/IPAMS/wiki) before you start !!!
 
+### Environment Set Up for Developer
+
+#### Recommended Env Setup
+
+Prepare
+- macOS with valet is great
+
+Procedure
+- Git clone this repo
+- Install npm, composer, laravel, setup MySQL.
+- run `npm install`, `composer install`
+- Copy .env from our shared onenote
+- Start Coding.
+
+## Attention
+The website has not been deployed yet, the following info is used 
+for develpor's refence.
 
 ### Deployment
 
