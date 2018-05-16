@@ -14,8 +14,11 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name("main");
-Route::get('/user', 'HomeController@user')->name("user");
 Route::get('/dashboard', 'HomeController@dashboard')->name("dashboard");
+
+Route::get('/user', 'UserController@profile')->name("user");
+Route::get('/user/edit', 'UserController@edit')->name("editUser");
+Route::post('/user/edit', 'UserController@update');
 
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 
