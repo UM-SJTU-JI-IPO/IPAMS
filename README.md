@@ -22,6 +22,13 @@ Procedure
 - Copy .env from our shared onenote
 - Start Coding.
 
+### Compile `CSS` `JS`
+Sources are stored in `/resource/assets`, configure file is `gulpfile.js`. This project
+is stil using `Laravel Elixir` instead of `Laravel Mix` to compile due to some source reference
+problems. It should be fixed if time available.
+
+To compile new `.css` and `.js`, just run `gulp` in project directory.
+
 ## Attention
 The website has not been deployed yet, the following info is used 
 for develpor's refence.
