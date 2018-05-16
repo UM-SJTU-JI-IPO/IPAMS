@@ -21,7 +21,7 @@ elixir(mix => {
         'resources/assets/vendor/font-awesome/css/font-awesome.css',
     ], 'public/css/vendor.css', './');
     mix.scripts([
-        'resources/assets/vendor/jquery/jquery-3.1.1.min.js',
+        'resources/assets/vendor/jquery/jquery-3.3.1.min.js',
         'resources/assets/vendor/bootstrap/js/bootstrap.js',
         'resources/assets/vendor/metisMenu/jquery.metisMenu.js',
         'resources/assets/vendor/slimscroll/jquery.slimscroll.min.js',
