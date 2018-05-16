@@ -12,7 +12,8 @@
                                 @else
                                     <strong class="font-bold">Log in Here</strong>
                                 @endif
-                            </span> <span class="text-muted text-xs block">User Menu <b class="caret"></b></span>
+                            </span>
+                            <span class="text-muted text-xs block">User Menu <b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
