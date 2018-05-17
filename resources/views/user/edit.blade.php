@@ -1,4 +1,4 @@
-{{-- TODO ATTENTION IE not supported Warning should present when IE detected --}}
+{{-- TODO ATTENTION IE not supported for submit btn location Warning should present when IE detected --}}
 @extends('layouts.app')
 
 @section('title', 'User Profile Panel')
@@ -39,14 +39,14 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newLegalName">Legal Name</label>
-                                                            <input type="text" class="form-control" id="newLegalName" value="{{ Auth::user()->name }}">
+                                                            <input type="text" class="form-control" id="newLegalName" value="{{ Auth::user()->name }}" readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newSJTUID">SJTU ID</label>
-                                                            <input type="number" class="form-control" id="newSJTUID" value="{{ Auth::user()->studentID }}">
+                                                            <input type="number" class="form-control" id="newSJTUID" value="{{ Auth::user()->studentID }}" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -55,7 +55,7 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newGender">Gender</label>
-                                                            <input type="text" class="form-control" id="newGender" value="{{ Auth::user()->gender }}">
+                                                            <input type="text" class="form-control" id="newGender" value="{{ Auth::user()->gender }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
@@ -79,25 +79,18 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newIDCardType">Identify File Type</label>
-                                                            <input type="text" class="form-control" id="newIDCardType" value="{{ Auth::user()->idCardType }}">
+                                                            <input type="text" class="form-control" id="newIDCardType" value="{{ Auth::user()->idCardType }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newIDCardNo">Identify File No.</label>
-                                                            <input type="text" class="form-control" id="newIDCardNo" value="{{ Auth::user()->idCardNo }}">
+                                                            <input type="text" class="form-control" id="newIDCardNo" value="{{ Auth::user()->idCardNo }}" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
-
-
-
 
                                         {{--
                                         <div class="checkbox">
