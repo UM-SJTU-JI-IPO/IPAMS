@@ -51,24 +51,38 @@
                                                             {{ Auth::user()->idCardNo }}
                                                         </td>
                                                     </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class=" col-md-12 col-lg-12 ">
+                                        <div class=" col-md-4 col-lg-4 ">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Passport No</th>
+                                                        <td>{{ Auth::user()->passportNo }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class=" col-md-4 col-lg-4 ">
                                             <table class="table">
                                                 <tbody>
                                                 <tr>
-                                                    <th>P1:</th>
-                                                    <td>lalala</td>
+                                                    <th>Passport Issue Date</th>
+                                                    <td>{{ Auth::user()->passportIssueDate }}</td>
                                                 </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class=" col-md-4 col-lg-4 ">
+                                            <table class="table">
+                                                <tbody>
                                                 <tr>
-                                                    <th>P2</th>
-                                                    <td>lalala</td>
+                                                    <th>Passport Expire Date</th>
+                                                    <td>{{ Auth::user()->passportExpireDate }}</td>
                                                 </tr>
-
                                                 </tbody>
                                             </table>
                                         </div>
