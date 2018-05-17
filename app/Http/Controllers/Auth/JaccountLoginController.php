@@ -62,6 +62,16 @@ class JaccountLoginController extends Controller
 
     private function findOrCreateUser($user, $provider)
     {
+        $passportNo = null;
+        if ($user['cardType'] == "01") {
+            $idCardType = "PRC ID";
+        } else if ($user['cardType'] == "03") {
+            $idCardType = "Passport";
+            $passportNo = $user['cardNo'];
+        } else {
+            $idCardType = "Others";
+        }
+
         // no idea why could not use uuid as where column
         if ($authUser = User::where('studentID', $user['code'])->first()) {
             $authUser->update([
@@ -71,12 +81,13 @@ class JaccountLoginController extends Controller
                 'birthDate' => $user['birthday']['birthDay'],
                 'birthMonth'=> $user['birthday']['birthMonth'],
                 'birthYear' => $user['birthday']['birthYear'],
-                'birthday'  => $user['birthday']['birthYear'] . '/' . $user['birthday']['birthMonth'] . '/' . $user['birthday']['birthDay'],
+                'birthday'  => date($user['birthday']['birthYear'] . '-' . $user['birthday']['birthMonth'] . '-' . $user['birthday']['birthDay']),
                 'gender'    => ucwords($user['gender']),
                 'email'     => $user['email'],
                 'mobile'    => $user['mobile'],
-                'idCardType'=> $user['cardType'],
-                'idCardNo'  => $user['cardNo']
+                'idCardType'=> $idCardType,
+                'idCardNo'  => $user['cardNo'],
+                'passportNo'=> $passportNo
             ]);
 
             return $authUser;
@@ -93,12 +104,13 @@ class JaccountLoginController extends Controller
             'birthDate' => $user['birthday']['birthDay'],
             'birthMonth'=> $user['birthday']['birthMonth'],
             'birthYear' => $user['birthday']['birthYear'],
-            'birthday'  => $user['birthday']['birthYear'] . '/' . $user['birthday']['birthMonth'] . '/' . $user['birthday']['birthDay'],
+            'birthday'  => date($user['birthday']['birthYear'] . '-' . $user['birthday']['birthMonth'] . '-' . $user['birthday']['birthDay']),
             'gender'    => ucwords($user['gender']),
             'email'     => $user['email'],
             'mobile'    => $user['mobile'],
-            'idCardType'=> $user['cardType'],
-            'idCardNo'  => $user['cardNo']
+            'idCardType'=> $idCardType,
+            'idCardNo'  => $user['cardNo'],
+            'passportNo'=> $passportNo
         ]);
 
 
