@@ -22,12 +22,15 @@ class CreateUsersTable extends Migration
             $table->integer('birthDate');
             $table->integer('birthMonth');
             $table->integer('birthYear');
-            $table->string('birthday');
+            $table->date('birthday');
             $table->string('gender');
             $table->string('email')->unique();
             $table->string('mobile');
             $table->string('idCardType');
             $table->string('idCardNo');
+            $table->string('passportNo')->nullable();
+            $table->date('passportIssueDate')->nullable();
+            $table->date('passportExpireDate')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
