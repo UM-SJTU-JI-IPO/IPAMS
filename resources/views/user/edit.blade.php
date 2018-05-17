@@ -1,4 +1,4 @@
-{{-- ATTENTION IE not supported --}}
+{{-- TODO ATTENTION IE not supported Warning should present when IE detected --}}
 @extends('layouts.app')
 
 @section('title', 'User Profile Panel')
@@ -13,7 +13,7 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">
-                                        Edit Profile
+                                        Edit User Profile
                                     </h3>
                                 </div>
                                 <div class="panel-body">
@@ -26,7 +26,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    place holder
+                                                    <div class="form-group">
+                                                        <div align="center">
+                                                            {{--TODO Implement change image function--}}
+                                                            <a href="#" data-original-title="change image" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Change Image</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-9 col-lg-9">
@@ -94,11 +99,7 @@
 
 
 
-                                        {{--<div class="form-group">
-                                            <label for="exampleInputFile">File input</label>
-                                            <input type="file" id="exampleInputFile">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
+                                        {{--
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox"> Check me out
@@ -107,8 +108,8 @@
                                     </form>
                                 </div>
                                 <div class="panel-footer">
-                                    <button type="submit" form="profile_form" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-edit"></i> Update</button>
-                                    <a href="/user" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-edit"></i> Cancel</a>
+                                    <button type="submit" form="profile_form" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-ok"></i> Update</button>
+                                    <a href="/user" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</a>
                                 </div>
                             </div>
                         </div>
