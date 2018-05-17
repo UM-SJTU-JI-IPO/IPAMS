@@ -33,8 +33,10 @@
                 <li class="{{ isActiveRoute('dashboard') }}">
                     <a href="{{ url('/dashboard') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span> </a>
                 </li>
-                <li class="{{ isActiveRoute('user') }}">
-                    <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Personal Info</span> </a>
+                <li class="{{ isActiveRoute('user') }}
+                           {{ isActiveRoute('editUser') }}
+                          ">
+                    <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
                 </li>
             @else
                 <li class="{{ isActiveRoute('main') }}">
