@@ -60,12 +60,12 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newGender">Gender</label><br>
-                                                            <select class="selectpicker">
-                                                                <option>Mustard</option>
-                                                                <option selected="selected">Ketchup</option>
-                                                                <option>Relish</option>
+                                                            <select class="selectpicker form-control" id="newGender" name="newGender">
+                                                                <option {{ isSelected(Auth::user()->gender,'Male') }} value="Male">Male</option>
+                                                                <option {{ isSelected(Auth::user()->gender,'Female') }} value="Female">Female</option>
+                                                                <option {{ isSelected(Auth::user()->gender,'Others') }} value="Others">Others</option>
                                                             </select>
-                                                            <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}">
+                                                            {{--<input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}">--}}
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
