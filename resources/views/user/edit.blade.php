@@ -58,13 +58,13 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newGender">Gender</label>
-                                                            <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}">
+                                                            <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newBirthday">Birthday</label>
-                                                            <input type="date" class="form-control" id="newBirthday" name="newBirthday" value="{{ Auth::user()->birthday }}">
+                                                            <input type="date" class="form-control" id="newBirthday" name="newBirthday" value="{{ Auth::user()->birthday }}" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,13 +73,13 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newEmail">Email</label>
-                                                            <input type="email" class="form-control" id="newEmail" name="newEmail" value="{{ Auth::user()->email }}">
+                                                            <input type="email" class="form-control" id="newEmail" name="newEmail" value="{{ Auth::user()->email }}" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newMobile">Mobile</label>
-                                                            <input type="number" class="form-control" id="newMobile" name="newMobile" value="{{ Auth::user()->mobile }}">
+                                                            <input type="number" class="form-control" id="newMobile" name="newMobile" value="{{ Auth::user()->mobile }}" required>
                                                         </div>
                                                     </div>
                                                 </div>
