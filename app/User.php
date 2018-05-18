@@ -18,7 +18,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'uuid', 'name', 'studentID', 'userType', 'birthDate', 'birthMonth', 'birthYear', 'birthday', 'gender', 'email', 'mobile', 'idCardType', 'idCardNo', 'accessToken', 'refreshToken'
+        'uuid',
+        'name',
+        'studentID',
+        'userType',
+        'birthDate',
+        'birthMonth',
+        'birthYear',
+        'birthday',
+        'gender',
+        'email',
+        'mobile',
+        'idCardType',
+        'idCardNo',
+        'passportNo',
+        'passportIssueDate',
+        'passportExpireDate',
+        'accessToken',
+        'refreshToken'
     ];
 
     /**
