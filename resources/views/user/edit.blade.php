@@ -59,7 +59,12 @@
                                                 <div class="row">
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label for="newGender">Gender</label>
+                                                            <label for="newGender">Gender</label><br>
+                                                            <select class="selectpicker">
+                                                                <option>Mustard</option>
+                                                                <option selected="selected">Ketchup</option>
+                                                                <option>Relish</option>
+                                                            </select>
                                                             <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}">
                                                         </div>
                                                     </div>
