@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use UUID;
 
 use Socialite;
 
@@ -87,7 +88,7 @@ class JaccountLoginController extends Controller
         //dd($user);
 
         return User::create([
-            'uuid'      => $user['unionId'],
+            'uuid'      => UUID::generate()->string,
             'sjtuID'    => $user['code'],
             'name'      => $user['name'],
             'userType'  => $user['userType'],
