@@ -27,11 +27,10 @@ class UserController extends Controller
     public function update()
     {
         $user = Auth::user();
-        dd(date(request('newBirthday')));
         $user->update([
-            'birthDate' => date('d',request('newBirthday')),
-            'birthMonth'=> date('m',request('newBirthday')),
-            'birthYear' => date('Y',request('newBirthday')),
+            'birthDate' => date('d',strtotime(request('newBirthday'))),
+            'birthMonth'=> date('m',strtotime(request('newBirthday'))),
+            'birthYear' => date('Y',strtotime(request('newBirthday'))),
             'birthday'  => request('newBirthday'),
             'gender'    => ucwords(request('newGender')),
             'email'     => request('newEmail'),

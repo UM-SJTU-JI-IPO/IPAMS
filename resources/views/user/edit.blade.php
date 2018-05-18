@@ -49,7 +49,7 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newSJTUID">SJTU ID</label>
-                                                            <input type="number" class="form-control" id="newSJTUID" name="newSJTUID" value="{{ Auth::user()->studentID }}" readonly>
+                                                            <input type="number" class="form-control" id="newSJTUID" name="newSJTUID" value="{{ Auth::user()->sjtuID }}" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
