@@ -23,7 +23,9 @@
                                             <div class="col-md-3 col-lg-3">
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-12" align="center">
-                                                        <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
+                                                        <div class="form-group">
+                                                            <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -58,13 +60,13 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newGender">Gender</label>
-                                                            <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}" required>
+                                                            <input type="text" class="form-control" id="newGender" name="newGender" value="{{ Auth::user()->gender }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newBirthday">Birthday</label>
-                                                            <input type="date" class="form-control" id="newBirthday" name="newBirthday" value="{{ Auth::user()->birthday }}" required>
+                                                            <input type="date" class="form-control" id="newBirthday" name="newBirthday" value="{{ Auth::user()->birthday }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -73,13 +75,13 @@
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newEmail">Email</label>
-                                                            <input type="email" class="form-control" id="newEmail" name="newEmail" value="{{ Auth::user()->email }}" required>
+                                                            <input type="email" class="form-control" id="newEmail" name="newEmail" value="{{ Auth::user()->email }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 col-lg-6">
                                                         <div class="form-group">
                                                             <label for="newMobile">Mobile</label>
-                                                            <input type="number" class="form-control" id="newMobile" name="newMobile" value="{{ Auth::user()->mobile }}" required>
+                                                            <input type="number" class="form-control" id="newMobile" name="newMobile" value="{{ Auth::user()->mobile }}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -122,6 +124,7 @@
                                             </div>
                                         </div>
                                     </form>
+                                    @include('errors.validate')
                                 </div>
                                 <div class="panel-footer">
                                     <button type="submit" form="profile_form" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-ok"></i> Update</button>

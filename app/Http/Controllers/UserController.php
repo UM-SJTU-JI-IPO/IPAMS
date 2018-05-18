@@ -26,7 +26,18 @@ class UserController extends Controller
 
     public function update()
     {
+        $this->validate(request(), [
+            'newBirthday' => 'required',
+            'newGender' => 'required',
+            'newEmail' => 'required',
+            'newMobile' => 'required',
+            'newPassportNo' => 'nullable',
+            'newPassportIssueDate' => 'nullable|date',
+            'newPassportExpireDate' => 'nullable|date|after:newPassportIssueDate'
+        ]);
+
         $user = Auth::user();
+
         $user->update([
             'birthDate' => date('d',strtotime(request('newBirthday'))),
             'birthMonth'=> date('m',strtotime(request('newBirthday'))),
