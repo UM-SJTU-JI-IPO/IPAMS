@@ -30,7 +30,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>SJTU ID</th>
-                                                        <td>{{ Auth::user()->studentID }}</td>
+                                                        <td>{{ Auth::user()->sjtuID }}</td>
                                                     </tr>
                                                     <tr>
                                                         <th>Gender</th>

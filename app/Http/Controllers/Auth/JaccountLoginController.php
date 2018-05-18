@@ -73,9 +73,9 @@ class JaccountLoginController extends Controller
         }
 
         // no idea why could not use uuid as where column
-        if ($authUser = User::where('studentID', $user['code'])->first()) {
+        if ($authUser = User::where('sjtuID', $user['code'])->first()) {
             $authUser->update([
-                'studentID' => $user['code'],
+                'sjtuID' => $user['code'],
                 'name'      => $user['name'],
                 'idCardType'=> $idCardType,
                 'idCardNo'  => $user['cardNo'],
@@ -87,9 +87,8 @@ class JaccountLoginController extends Controller
         //dd($user);
 
         return User::create([
-            'id'        => $user['id'],
             'uuid'      => $user['unionId'],
-            'studentID' => $user['code'],
+            'sjtuID'    => $user['code'],
             'name'      => $user['name'],
             'userType'  => $user['userType'],
             'birthDate' => $user['birthday']['birthDay'],

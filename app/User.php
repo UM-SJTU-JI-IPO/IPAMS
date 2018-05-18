@@ -19,8 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'uuid',
+        'sjtuID',
         'name',
-        'studentID',
         'userType',
         'birthDate',
         'birthMonth',
@@ -32,10 +32,6 @@ class User extends Authenticatable
         'idCardType',
         'idCardNo',
         'passportNo',
-        'passportIssueDate',
-        'passportExpireDate',
-        'accessToken',
-        'refreshToken'
     ];
 
     /**
