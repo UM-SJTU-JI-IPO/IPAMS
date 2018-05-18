@@ -16,9 +16,9 @@
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="row">
+                                    <div class="row m-b-xs">
                                         <div class="col-md-3 col-lg-3 " align="center">
-                                            <img alt="User Pic" src="https://cdn.mos.cms.futurecdn.net/98fbc1277506ce75130f959b531b9b49-970-80.jpg" class="img-rounded img-responsive">
+                                            <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
                                         </div>
 
                                         <div class=" col-md-9 col-lg-9 ">
@@ -45,6 +45,10 @@
                                                         <td>{{ Auth::user()->email }}</td>
                                                     </tr>
                                                     <tr>
+                                                        <th>Mobile Phone</th>
+                                                        <td>{{ Auth::user()->mobile }}</td>
+                                                    </tr>
+                                                    <tr>
                                                         <th>Identity File</th>
                                                         <td>
                                                             {{ Auth::user()->idCardType }}<br>
@@ -55,13 +59,19 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row ">
                                         <div class=" col-md-4 col-lg-4 ">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <th>Passport No</th>
-                                                        <td>{{ Auth::user()->passportNo }}</td>
+                                                        <td>
+                                                            @if (Auth::user()->passportNo)
+                                                                {{ Auth::user()->passportNo }}
+                                                            @else
+                                                                Please Update
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -71,7 +81,13 @@
                                                 <tbody>
                                                 <tr>
                                                     <th>Passport Issue Date</th>
-                                                    <td>{{ Auth::user()->passportIssueDate }}</td>
+                                                    <td>
+                                                        @if (Auth::user()->passportIssueDate)
+                                                            {{ Auth::user()->passportIssueDate }}
+                                                        @else
+                                                            Please Update
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -81,7 +97,13 @@
                                                 <tbody>
                                                 <tr>
                                                     <th>Passport Expire Date</th>
-                                                    <td>{{ Auth::user()->passportExpireDate }}</td>
+                                                    <td>
+                                                        @if (Auth::user()->passportExpireDate)
+                                                            {{ Auth::user()->passportExpireDate }}
+                                                        @else
+                                                            Please Update
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             </table>

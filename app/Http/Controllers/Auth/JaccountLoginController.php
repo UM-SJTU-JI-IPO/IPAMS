@@ -77,17 +77,8 @@ class JaccountLoginController extends Controller
             $authUser->update([
                 'studentID' => $user['code'],
                 'name'      => $user['name'],
-                'userType'  => $user['userType'],
-                'birthDate' => $user['birthday']['birthDay'],
-                'birthMonth'=> $user['birthday']['birthMonth'],
-                'birthYear' => $user['birthday']['birthYear'],
-                'birthday'  => date($user['birthday']['birthYear'] . '-' . $user['birthday']['birthMonth'] . '-' . $user['birthday']['birthDay']),
-                'gender'    => ucwords($user['gender']),
-                'email'     => $user['email'],
-                'mobile'    => $user['mobile'],
                 'idCardType'=> $idCardType,
                 'idCardNo'  => $user['cardNo'],
-                'passportNo'=> $passportNo
             ]);
 
             return $authUser;
