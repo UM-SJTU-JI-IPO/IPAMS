@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
         //
         require_once __DIR__ . '/../Http/Helpers/Navigation.php';
         require_once __DIR__ . '/../Http/Helpers/Selected.php';
+        require_once __DIR__ . '/../Http/Helpers/CheckAdmin.php';
     }
 }
