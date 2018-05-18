@@ -38,6 +38,11 @@
                           ">
                     <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
                 </li>
+                @if (isAdmin(Auth::user()))
+                    <li class="{{ isActiveRoute('admin') }}">
+                        <a href="{{ url('/admin') }}"><i class="fa fa-user"></i> <span class="nav-label">Admin</span> </a>
+                    </li>
+                @endif
             @else
                 <li class="{{ isActiveRoute('main') }}">
                     <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Welcome</span></a>
