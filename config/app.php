@@ -237,6 +237,7 @@ return [
 
         //User Added Alias
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'UUID' => Webpatser\Uuid\Uuid::class,
     ],
 
 ];

@@ -13,7 +13,8 @@
         "laravel/socialite": "^3.0",
         "socialiteproviders/generators": "^4.1",
         "socialiteproviders/manager": "^3.3",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
