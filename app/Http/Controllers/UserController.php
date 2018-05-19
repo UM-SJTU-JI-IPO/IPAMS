@@ -55,4 +55,8 @@ class UserController extends Controller
 
         return redirect()->route('user');
     }
+
+    public function show(){
+        return view('user/profile');
+    }
 }

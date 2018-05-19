@@ -20,6 +20,8 @@ Route::get('/user', 'UserController@profile')->name("user");
 Route::get('/user/edit', 'UserController@edit')->name("editUser");
 Route::post('/user/edit', 'UserController@update');
 
+Route::get('/usersmanage', 'UserController@show')->name("usersManage");
+
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 
 Route::get('/login/github', 'Auth\GithubLoginController@redirectToProvider');
