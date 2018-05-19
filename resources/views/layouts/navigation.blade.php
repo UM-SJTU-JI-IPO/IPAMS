@@ -39,8 +39,8 @@
                     <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
                 </li>
                 @if (isAdmin(Auth::user()))
-                    <li class="{{ isActiveRoute('admin') }}">
-                        <a href="{{ url('/admin') }}"><i class="fa fa-user"></i> <span class="nav-label">Admin</span> </a>
+                    <li class="{{ isActiveRoute('usersManage') }}">
+                        <a href="{{ url('/usersmanage') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Management</span> </a>
                     </li>
                 @endif
             @else
