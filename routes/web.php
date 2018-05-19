@@ -31,3 +31,7 @@ Route::get('/login/jaccount', 'Auth\JaccountLoginController@redirectToProvider')
 Route::get('/login/jaccount/callback', 'Auth\JaccountLoginController@handleProviderCallback');
 
 Route::get('/logout', 'SessionController@destroyer');
+
+/*Route::get('/mailable', function () {
+    return new App\Mail\welcomeMail(Auth::user());
+});*/
