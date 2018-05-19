@@ -21,7 +21,8 @@ class User extends Authenticatable
         'uuid',
         'sjtuID',
         'name',
-        'userType',
+        'class',
+        'studentType',
         'birthDate',
         'birthMonth',
         'birthYear',
@@ -32,6 +33,7 @@ class User extends Authenticatable
         'idCardType',
         'idCardNo',
         'passportNo',
+        'userType',
     ];
 
     /**
