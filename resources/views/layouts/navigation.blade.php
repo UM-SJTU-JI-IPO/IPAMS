@@ -16,7 +16,7 @@
                             <span class="text-muted text-xs block">User Menu <b class="caret"></b></span>
                         </span>
                     </a>
-                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                    <ul class="dropdown-menu animated fadeInLeft m-t-xs">
                         @if (Auth::check())
                             <li><a href="/logout"><i class="fa fa-sign-out"></i> Log out</a></li>
                         @else
@@ -40,7 +40,11 @@
                 </li>
                 @if (isAdmin(Auth::user()))
                     <li class="{{ isActiveRoute('usersManage') }}">
-                        <a href="{{ url('/usersmanage') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Management</span> </a>
+                        <a href="{{ url('/usersmanage') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Admin Panel</span> <span class="fa arrow"></a>
+                        <ul class="nav nav-second-level">
+                            <li class="active"><a href="{{ url('/usersmanage') }}">Users Management</a></li>
+                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                        </ul>
                     </li>
                 @endif
             @else
