@@ -83,6 +83,8 @@ class JaccountLoginController extends Controller
         }
 
         //dd($user);
+        $classOf = null;
+        $studentType = null;
         if ($user['userType'] == 'student') {
             $classOf = date('Y',strtotime($user['identities'][0]['expireDate']));
             if ($user['code'][0] == '5') {
