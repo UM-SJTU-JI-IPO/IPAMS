@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\welcomeMail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -92,6 +93,9 @@ class JaccountLoginController extends Controller
                 $studentType = 'others';
             }
         }
+
+        // Send Welcome Email for First Login User
+        Mail::to($user['email'])->send(new welcomeMail($user));
 
         return User::create([
             'uuid'      => UUID::generate()->string,
