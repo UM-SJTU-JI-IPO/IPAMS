@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('uuid')->unique();
             $table->string('sjtuID')->unique();
             $table->string('name');
-            $table->string('userType');
+            $table->integer('class')->nullable(); // e.g. Class of 2018
+            $table->string('studentType')->nullable(); // e.g. Loacal, Exchange
             $table->integer('birthDate');
             $table->integer('birthMonth');
             $table->integer('birthYear');
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('passportNo')->nullable();
             $table->date('passportIssueDate')->nullable();
             $table->date('passportExpireDate')->nullable();
+            $table->string('userType');
             $table->rememberToken();
             $table->timestamps();
         });

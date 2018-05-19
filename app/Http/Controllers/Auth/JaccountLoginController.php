@@ -44,10 +44,6 @@ class JaccountLoginController extends Controller
         $provider = 'jaccount';
         $user = Socialite::driver($provider)->user();
 
-        // OAuth One Providers
-        $token = $user->token;
-        $refreshToken = $user->refreshToken;
-
         $user = $user->user;
 
         // Check if signed in
@@ -86,12 +82,23 @@ class JaccountLoginController extends Controller
         }
 
         //dd($user);
+        if ($user['userType'] == 'student') {
+            $classOf = date('Y',strtotime($user['identities'][0]['expireDate']));
+            if ($user['code'][0] == '5') {
+                $studentType = 'local';
+            } else if ($user['code'][0] == '7') {
+                $studentType = 'exchange';
+            } else {
+                $studentType = 'others';
+            }
+        }
 
         return User::create([
             'uuid'      => UUID::generate()->string,
             'sjtuID'    => $user['code'],
             'name'      => $user['name'],
-            'userType'  => $user['userType'],
+            'class'     => $classOf,
+            'studentType' => $studentType,
             'birthDate' => $user['birthday']['birthDay'],
             'birthMonth'=> $user['birthday']['birthMonth'],
             'birthYear' => $user['birthday']['birthYear'],
@@ -101,7 +108,8 @@ class JaccountLoginController extends Controller
             'mobile'    => $user['mobile'],
             'idCardType'=> $idCardType,
             'idCardNo'  => $user['cardNo'],
-            'passportNo'=> $passportNo
+            'passportNo'=> $passportNo,
+            'userType'  => $user['userType'],
         ]);
 
 
