@@ -14,7 +14,7 @@ class UsersManageController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')->get()->sortBy('sjtuID',$descending = false);
+        $users = DB::table('users')->get()->sortBy('userType, sjtuID',SORT_REGULAR, false);
 
         return view('usersadmin.index', ['users' => $users]);
     }

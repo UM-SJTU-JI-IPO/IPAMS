@@ -40,10 +40,10 @@
                 </li>
                 @if (isAdmin(Auth::user()))
                     <li class="{{ isActiveRoute('usersManage') }}">
-                        <a href="{{ url('/usersadmin') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Admin Panel</span> <span class="fa arrow"></a>
+                        <a href="{{ url('/usersadmin') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Admin</span> <span class="fa arrow"></a>
                         <ul class="nav nav-second-level">
                             <li class="active"><a href="{{ url('/usersadmin') }}">Users Management</a></li>
-                            <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                            <li><a href="dashboard_2.html">Another Admin</a></li>
                         </ul>
                     </li>
                 @endif
