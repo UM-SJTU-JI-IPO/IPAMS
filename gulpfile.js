@@ -20,6 +20,7 @@ elixir(mix => {
         'resources/assets/vendor/animate/animate.css',
         'resources/assets/vendor/font-awesome/css/font-awesome.css',
         'resources/assets/vendor/bootstrap-select/css/bootstrap-select.css',
+        'resources/assets/vendor/footable/css/footable.standalone.css',
     ], 'public/css/vendor.css', './');
     mix.scripts([
         'resources/assets/vendor/jquery/jquery-3.3.1.min.js',
@@ -28,6 +29,7 @@ elixir(mix => {
         'resources/assets/vendor/slimscroll/jquery.slimscroll.min.js',
         'resources/assets/vendor/pace/pace.min.js',
         'resources/assets/vendor/bootstrap-select/js/bootstrap-select.min.js',
+        'resources/assets/vendor/footable/js/footable.js',
         'resources/assets/js/app.js'
     ], 'public/js/app.js', './');
 

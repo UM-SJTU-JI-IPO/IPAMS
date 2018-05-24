@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-<link href="{!! asset('css/plugins/footable/footable.standalone.min.css') !!}" rel="stylesheet">
-
 @section('title', 'Users Management Panel')
 
 @section('content')
@@ -115,4 +113,3 @@
 <!-- FooTable -->
 <script src="{!! asset('js/app.js') !!}"></script>
 
-<script src="{!! asset('js/plugins/footable/footable.min.js') !!}"></script>
