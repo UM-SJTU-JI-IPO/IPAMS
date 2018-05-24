@@ -16,7 +16,7 @@ class UsersManageController extends Controller
     {
         $users = DB::table('users')->get()->sortBy('sjtuID',$descending = false);
 
-        return view('usersmanage.index', ['users' => $users]);
+        return view('usersadmin.index', ['users' => $users]);
     }
 
     /**
