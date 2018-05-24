@@ -40,6 +40,9 @@
 <script src="{!! asset('js/app.js') !!}" type="text/javascript"></script>
 
 @section('scripts')
+    jQuery(function($){
+        $('.footable').footable();
+    });
 @show
 
 </body>
