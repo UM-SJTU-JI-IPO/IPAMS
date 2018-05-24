@@ -1,11 +1,11 @@
 <br><br>
-<h4>Sincerely,</h4>
+<p>Sincerely,</p>
 
-<h4>International Program Office</h4>
+<p>International Program Office</p>
 
-<h4>Room 300, UM - SJTU Joint Institute</h4>
+<p>Room 300, UM - SJTU Joint Institute</p>
 
-<h4>Dongchuan Rd. 800 Shanghai Jiao Tong University</h4>
+<p>Dongchuan Rd. 800 Shanghai Jiao Tong University</p>
 
 
 <br>
