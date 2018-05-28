@@ -115,18 +115,71 @@ $(document).ready(function () {
      ***************************/
     // Functions for user admin
     var usersAdminURL = "/usersadmin";
-    //display confirm form for userType editing
+    // display confirm form for userType editing
     $(".footable tbody tr td").on("click", "button.setAdmin",  function(){
-        var sjtuID = $(this).val();
-        document.getElementById("targetAddAdminUsersID").innerHTML = sjtuID;
+        var valArray = $(this).val().split('-');
+        var userName = valArray[1];
+        document.getElementById("targetAddAdminUsersID").innerHTML = userName;
+        window.targetSJTUID = valArray[0];
         $('#setAdminModal').modal('show');
     });
     $(".footable tbody tr td").on("click", "button.revokeAdmin",  function(){
-        var sjtuID = $(this).val();
-        document.getElementById("targetRevokeAdminUsersID").innerHTML = sjtuID;
+        var valArray = $(this).val().split('-');
+        var userName = valArray[1];
+        document.getElementById("targetRevokeAdminUsersID").innerHTML = userName;
+        window.targetSJTUID = valArray[0];
         $('#revokeAdminModal').modal('show');
     });
+    // Save Change btn in modal clicked, Confirm uerType changes
+    $(".modal-footer").on("click", ".btn-confirm-change",  function(e){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        e.preventDefault();
+
+        var targetType;
+
+        //used to determine the http verb to use [add=POST], [update=PUT]
+        var state = $(this).val();
+        var type = "POST";
+        var target_id = window.targetSJTUID;
+        if (state === "set") {
+            targetType = "admin";
+        } else {
+            if (target_id.charAt(0) === "6")
+                targetType = "faculty";
+            else
+                targetType = "student";
+        }
+        // var target_id = $(this).parentNode.parentNode.children[1].children[1].innerText;
+
+        var formData = {
+            userType: targetType,
+            _method: "PUT"
+        };
+        var my_url = usersAdminURL;
+        my_url += '/' + target_id;
+        $.ajax({
+            type: type,
+            url: my_url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                //TODO Optimize to avoid reload each time
+                location.reload();
+                // if (state === "set")
+                //     $('#setAdminModal').modal('hide');
+                // else
+                //     $('#revokeAdminModal').modal('hide');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
 });
 
 

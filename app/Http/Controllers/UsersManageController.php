@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
+use App\User;
 
 class UsersManageController extends Controller
 {
@@ -46,9 +48,11 @@ class UsersManageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user_id)
     {
-        //
+        $user = User::find($user_id);
+
+        return view('user/profile',compact($user));
     }
 
     /**
@@ -69,9 +73,17 @@ class UsersManageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user_id)
     {
-        //
+        $user = User::find($user_id);
+
+        $user->update([
+            'userType' => $request->userType,
+        ]);
+
+        $user->save();
+
+        return response()->json(['data'=> $user]);
     }
 
     /**
