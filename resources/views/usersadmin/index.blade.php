@@ -28,7 +28,7 @@
         <div class="row">
             <div class="ibox">
                 <div class="ibox-content">
-                    <table class="table table-stripped table-hover">
+                    <table class="footable table table-stripped table-hover" data-page-size="15">
                         <thead>
                         <tr>
                             {{--<th data-visible="false">ID</th>--}}

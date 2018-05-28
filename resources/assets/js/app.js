@@ -18,6 +18,9 @@ $(document).ready(function () {
     // MetsiMenu
     $('#side-menu').metisMenu();
 
+    // Footable
+    $('.footable').footable();
+
     // Collapse ibox function
     $('.collapse-link').on('click', function () {
         var ibox = $(this).closest('div.ibox');
