@@ -64,12 +64,14 @@
                                 </td>--}}
                                 <td>
                                     <div class="text-right action">
-                                        @if ($user->userType != 'admin')
-                                            <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Set as Admin</button>
-                                        @else
-                                            <button class="btn-warning btn btn-xs revokeAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Revoke Admin</button>
+                                        @if (Auth::user()->sjtuID != $user->sjtuID)
+                                            @if ($user->userType != 'admin')
+                                                <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Set as Admin</button>
+                                            @else
+                                                <button class="btn-warning btn btn-xs revokeAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Revoke Admin</button>
+                                            @endif
+                                            <button class="btn-danger btn btn-xs">Delete</button>
                                         @endif
-                                        <button class="btn-danger btn btn-xs">Delete</button>
                                     </div>
                                 </td>
                             </tr>
