@@ -28,12 +28,12 @@
         <div class="row">
             <div class="ibox">
                 <div class="ibox-content">
-                    <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                    <table class="table table-stripped table-hover">
                         <thead>
                         <tr>
                             {{--<th data-visible="false">ID</th>--}}
                             {{--<th data-visible="false">UUID</th>--}}
-                            <th data-toggle="true">SJTU ID</th>
+                            <th>SJTU ID</th>
                             <th>Name</th>
                             <th>Class</th>
                             <th>Student Type</th>
