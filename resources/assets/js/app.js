@@ -109,6 +109,24 @@ $(document).ready(function () {
     $('.full-height-scroll').slimscroll({
         height: '100%'
     })
+
+    /***************************
+     * Customized JS functions *
+     ***************************/
+    // Functions for user admin
+    var usersAdminURL = "/usersadmin";
+    //display confirm form for userType editing
+    $(".footable tbody tr td").on("click", "button.setAdmin",  function(){
+        var sjtuID = $(this).val();
+        document.getElementById("targetAddAdminUsersID").innerHTML = sjtuID;
+        $('#setAdminModal').modal('show');
+    });
+    $(".footable tbody tr td").on("click", "button.revokeAdmin",  function(){
+        var sjtuID = $(this).val();
+        document.getElementById("targetRevokeAdminUsersID").innerHTML = sjtuID;
+        $('#revokeAdminModal').modal('show');
+    });
+
 });
 
 

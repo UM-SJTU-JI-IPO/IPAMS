@@ -64,20 +64,17 @@
                                     <span class="label label-primary">Enable</span>
                                 </td>--}}
                                 <td>
-                                    <div class="text-right">
+                                    <div class="text-right action">
                                         @if ($user->userType != 'admin')
-                                            <button class="btn-primary btn btn-xs">Set as Admin</button>
+                                            <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}">Set as Admin</button>
                                         @else
-                                            <button class="btn-warning btn btn-xs">Revoke Admin</button>
+                                            <button class="btn-warning btn btn-xs revokeAdmin" value="{{ $user->sjtuID }}">Revoke Admin</button>
                                         @endif
                                         <button class="btn-danger btn btn-xs">Delete</button>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
-
-
-
 
                         </tbody>
                         <tfoot>
@@ -88,6 +85,43 @@
                         </tr>
                         </tfoot>
                     </table>
+                    <div class="modal fade" id="setAdminModal" tabindex="-1" role="dialog" aria-labelledby="setAdminModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title" id="mySetAdminModalLabel">Attention</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="display:inline">Do you confirm to change the user: </p>
+                                    <p style="display:inline;font-weight: bold;color:red;" id="targetAddAdminUsersID"></p>
+                                    <p style="display:inline">to be an admin?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                                    <input type="hidden" id="task_id" name="task_id" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="revokeAdminModal" tabindex="-1" role="dialog" aria-labelledby="revokeAdminModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title" id="myRevokeAdminModalLabel">Attention</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p style="display:inline">Do you confirm to revoke the admin privilege of the user: </p>
+                                    <p style="display:inline;font-weight: bold;color:red;" id="targetRevokeAdminUsersID"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" id="btn-save" value="add">Save changes</button>
+                                    <input type="hidden" id="task_id" name="task_id" value="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-12">
