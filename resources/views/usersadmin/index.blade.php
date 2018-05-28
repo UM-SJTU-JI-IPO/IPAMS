@@ -3,7 +3,6 @@
 @section('title', 'Users Management Panel')
 
 @section('content')
-
     <div class="wrapper wrapper-content animated fadeInRight ">
 
         <div class="row wrapper border-bottom white-bg page-heading">
@@ -57,7 +56,7 @@
                                 <td>
                                     {{ $user->studentType }}
                                 </td>
-                                <td>
+                                <td id="{{ $user->sjtuID }}userType">
                                     {{ $user->userType }}
                                 </td>
                                 {{--<td>
@@ -66,9 +65,9 @@
                                 <td>
                                     <div class="text-right action">
                                         @if ($user->userType != 'admin')
-                                            <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}">Set as Admin</button>
+                                            <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Set as Admin</button>
                                         @else
-                                            <button class="btn-warning btn btn-xs revokeAdmin" value="{{ $user->sjtuID }}">Revoke Admin</button>
+                                            <button class="btn-warning btn btn-xs revokeAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Revoke Admin</button>
                                         @endif
                                         <button class="btn-danger btn btn-xs">Delete</button>
                                     </div>
@@ -94,12 +93,11 @@
                                 </div>
                                 <div class="modal-body">
                                     <p style="display:inline">Do you confirm to change the user: </p>
-                                    <p style="display:inline;font-weight: bold;color:red;" id="targetAddAdminUsersID"></p>
+                                    <p style="display:inline;font-weight: bold;color:purple;" id="targetAddAdminUsersID"></p>
                                     <p style="display:inline">to be an admin?</p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                                    <input type="hidden" id="task_id" name="task_id" value="0">
+                                    <button type="button" class="btn btn-primary btn-confirm-change" value="set">Confirm</button>
                                 </div>
                             </div>
                         </div>
@@ -113,11 +111,10 @@
                                 </div>
                                 <div class="modal-body">
                                     <p style="display:inline">Do you confirm to revoke the admin privilege of the user: </p>
-                                    <p style="display:inline;font-weight: bold;color:red;" id="targetRevokeAdminUsersID"></p>
+                                    <p style="display:inline;font-weight: bold;color:purple;" id="targetRevokeAdminUsersID"></p>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-warning" id="btn-save" value="add">Save changes</button>
-                                    <input type="hidden" id="task_id" name="task_id" value="0">
+                                    <button type="button" class="btn btn-warning btn-confirm-change" value="revoke">Confirm</button>
                                 </div>
                             </div>
                         </div>

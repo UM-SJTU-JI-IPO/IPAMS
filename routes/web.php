@@ -21,6 +21,8 @@ Route::get('/user/edit', 'UserController@edit')->name("editUser");
 Route::post('/user/edit', 'UserController@update');
 
 Route::get('/usersadmin', 'UsersManageController@index')->name("usersAdmin");
+Route::get('/usersadmin/{user_id}','UsersManageController@show');
+Route::put('/usersadmin/{user_id?}','UsersManageController@update');
 
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 
