@@ -2,7 +2,7 @@
 @extends('emails.layout')
 
 @section('content')
-Hi {{ $userName }},
+Hi {{ $user->name }},
 <br>
 <br>
 Welcome to IPAMS. IPAMS stands for International Program Application and Management System.
