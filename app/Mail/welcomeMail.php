@@ -11,6 +11,7 @@ class welcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
     /**
      * Create a new message instance.
      *
@@ -29,7 +30,7 @@ class welcomeMail extends Mailable
     public function build()
     {
         $this->subject = "Welcome to IPAMS!";
-        return $this->view('emails.welcome')->with(['userName' => $this->user['name']]);
+        return $this->view('emails.welcome');
     }
 
 }
