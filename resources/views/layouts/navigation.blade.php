@@ -38,15 +38,22 @@
                           ">
                     <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
                 </li>
+                <li class="{{ isActiveRoute('transferPanel') }}
+                           {{ isActiveRoute('newTransferApplication') }}
+                           {{ isActiveRoute('myTransferApplications') }}
+                        ">
+                    <a><i class="fa fa-exchange"></i> <span class="nav-label">Transfer Courses</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class="{{ isActiveRoute('newTransferApplication') }}"><a href="{{ url('/transferCourses/newApplication') }}">New Application</a></li>
+                        <li class="{{ isActiveRoute('myTransferApplications') }}"><a href="{{ url('/transferCourses/myApplication') }}">My Applications</a></li>
+                    </ul>
+                </li>
                 @if (isAdmin(Auth::user()))
                     <li class="{{ isActiveRoute('usersManage') }}">
-                        <a href="{{ url('/usersadmin') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Admin</span> <span class="fa arrow"></a>
-                        <ul class="nav nav-second-level">
-                            <li class="active"><a href="{{ url('/usersadmin') }}">Users Management</a></li>
-                            <li><a href="dashboard_2.html">Another Admin</a></li>
-                        </ul>
+                        <a href="{{ url('/usersadmin') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Admin</span> </a>
                     </li>
                 @endif
+
             @else
                 <li class="{{ isActiveRoute('main') }}">
                     <a href="{{ url('/') }}"><i class="fa fa-th-large"></i> <span class="nav-label">Welcome</span></a>
