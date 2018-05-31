@@ -24,6 +24,10 @@ Route::get('/usersadmin', 'UsersManageController@index')->name("usersAdmin");
 Route::get('/usersadmin/{user_id}','UsersManageController@show');
 Route::put('/usersadmin/{user_id?}','UsersManageController@update');
 
+//Route::get('/transferCourses', 'TransferApplicationController@panel')->name("transferPanel");
+Route::get('/transferCourses/newApplication','TransferApplicationController@create')->name("newTransferApplication");
+Route::get('/transferCourses/myApplication','TransferApplicationController@index')->name("myTransferApplications");
+
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 
 Route::get('/login/github', 'Auth\GithubLoginController@redirectToProvider');

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransferApplicationsTable extends Migration
+class TransferApplications extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,15 @@ class CreateTransferApplicationsTable extends Migration
     public function up()
     {
         Schema::create('transfer_applications', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('applicationID');
+            $table->string('sjtuID');
+            $table->string('evaluationID');
+            $table->string('syllabusFile');
+            $table->string('applicationFormFile');
+            $table->string('additionalMaterialFile');
+            $table->string('evaluationProgress');
+            $table->string('evaluationResult');
+            $table->string('evaluationInfo');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ class CreateTransferApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transfer_applications');
+        //
     }
 }
