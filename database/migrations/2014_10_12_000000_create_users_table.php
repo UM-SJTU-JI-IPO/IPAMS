@@ -14,11 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->string('uuid')->unique();
             $table->string('sjtuID')->unique();
             $table->string('name');
             $table->integer('class')->nullable(); // e.g. Class of 2018
-            $table->string('studentType')->nullable(); // e.g. Loacal, Exchange
+            $table->string('instituteRole')->nullable(); // e.g. Loacal, Exchange
             $table->integer('birthDate');
             $table->integer('birthMonth');
             $table->integer('birthYear');
