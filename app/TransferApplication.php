@@ -12,4 +12,9 @@ class TransferApplication extends Model
     protected $guarded = [
         'applicationID'
     ];
+
+    public function applier()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

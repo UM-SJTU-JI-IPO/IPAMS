@@ -16,4 +16,9 @@ class TransferCourse extends Model
         'activeTime',
         'expireTime'
     ];
+
+    public function phone()
+    {
+        return $this->hasMany('App\Phone');
+    }
 }

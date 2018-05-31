@@ -44,4 +44,9 @@ class User extends Authenticatable
     protected $hidden = [
     ];
 
+    public function transferApplications()
+    {
+        return $this->hasMany('App\TransferApplication');
+    }
+
 }

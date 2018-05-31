@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TransferApplications extends Migration
+class CreateTransferApplications extends Migration
 {
     /**
      * Run the migrations.
@@ -17,6 +17,8 @@ class TransferApplications extends Migration
             $table->increments('applicationID');
             $table->string('sjtuID');
             $table->string('evaluationID');
+            $table->string('courseID');
+            $table->string('type');
             $table->string('syllabusFile');
             $table->string('applicationFormFile');
             $table->string('additionalMaterialFile');

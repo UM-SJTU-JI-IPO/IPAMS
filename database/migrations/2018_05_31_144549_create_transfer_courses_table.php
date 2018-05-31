@@ -17,6 +17,7 @@ class CreateTransferCoursesTable extends Migration
             $table->increments('courseID');
             $table->string('university');
             $table->string('courseCode');
+            $table->string('applicationID');
             $table->string('status');
             $table->date('activeTime')->nullable();
             $table->date('expireTime')->nullable();
