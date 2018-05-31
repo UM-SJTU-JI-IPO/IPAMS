@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransferApplication extends Model
 {
-    //
+    protected $table = 'transfer_applications';
+    protected $primaryKey = 'applicationID';
+
+    protected $guarded = [
+        'applicationID'
+    ];
 }
