@@ -17,4 +17,9 @@ class TransferApplication extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function appliedCourse()
+    {
+        return $this->belongsTo('App\TransferCourse');
+    }
 }
