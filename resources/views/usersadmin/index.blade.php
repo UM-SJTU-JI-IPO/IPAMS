@@ -35,7 +35,7 @@
                             <th>SJTU ID</th>
                             <th>Name</th>
                             <th>Class</th>
-                            <th>Student Type</th>
+                            <th>Institute Role</th>
                             <th>User Type</th>
                             <th class="text-right" data-sort-ignore="true">Action</th>
 
@@ -54,7 +54,7 @@
                                     {{ $user->class }}
                                 </td>
                                 <td>
-                                    {{ $user->studentType }}
+                                    {{ $user->instituteRole }}
                                 </td>
                                 <td id="{{ $user->sjtuID }}userType">
                                     {{ $user->userType }}

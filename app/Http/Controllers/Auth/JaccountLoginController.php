@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Mail\welcomeMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
+use App\Mail\welcomeMail;
 use App\Http\Controllers\Controller;
 use App\User;
-use UUID;
 
 use Socialite;
 
@@ -84,31 +83,40 @@ class JaccountLoginController extends Controller
 
         //dd($user);
         $classOf = null;
-        $studentType = null;
+        $instituteRole = null;
         if ($user['userType'] == 'student') {
             $classOf = date('Y',strtotime($user['identities'][0]['expireDate']));
-            if ($user['code'][0] == '5') {
-                $studentType = 'local';
+            if (in_array($user['code'][0] , ['5','0'] )) {
+                $instituteRole = 'Local';
             } else if ($user['code'][0] == '7') {
-                $studentType = 'exchange';
+                $instituteRole = 'Exchange';
             } else {
-                $studentType = 'others';
+                $instituteRole = 'Others';
             }
+        } else {
+            $instituteRole = $user['userType'];
         }
 
-        // Send Welcome Email for First Login User
-        Mail::to($user['email'])->send(new welcomeMail($user));
+        $birthDate = null;
+        $birthMonth = null;
+        $birthYear = null;
+        $birthday = null;
+        if (array_key_exists('birthday',$user)) {
+            $birthDate = $user['birthday']['birthDay'];
+            $birthMonth = $user['birthday']['birthMonth'];
+            $birthYear = $user['birthday']['birthYear'];
+            $birthday = date($user['birthday']['birthYear'] . '-' . $user['birthday']['birthMonth'] . '-' . $user['birthday']['birthDay']);
+        }
 
-        return User::create([
-            'uuid'      => UUID::generate()->string,
+        $newUser = User::create([
             'sjtuID'    => $user['code'],
             'name'      => $user['name'],
             'class'     => $classOf,
-            'studentType' => $studentType,
-            'birthDate' => $user['birthday']['birthDay'],
-            'birthMonth'=> $user['birthday']['birthMonth'],
-            'birthYear' => $user['birthday']['birthYear'],
-            'birthday'  => date($user['birthday']['birthYear'] . '-' . $user['birthday']['birthMonth'] . '-' . $user['birthday']['birthDay']),
+            'instituteRole' => $instituteRole,
+            'birthDate' => $birthDate,
+            'birthMonth'=> $birthMonth,
+            'birthYear' => $birthYear,
+            'birthday'  => $birthday,
             'gender'    => ucwords($user['gender']),
             'email'     => $user['email'],
             'mobile'    => $user['mobile'],
@@ -117,6 +125,11 @@ class JaccountLoginController extends Controller
             'passportNo'=> $passportNo,
             'userType'  => $user['userType'],
         ]);
+
+        // Send Welcome Email for First Login User
+        Mail::to($user['email'])->send(new welcomeMail($newUser));
+
+        return $newUser;
 
 
     }
