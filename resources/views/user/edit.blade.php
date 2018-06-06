@@ -1,4 +1,4 @@
-{{-- TODO ATTENTION IE not supported for submit btn location Warning should present when IE detected --}}
+{{-- TODO ATTENTION IE not supported for submit btn location, Warning should present when IE detected --}}
 @extends('layouts.app')
 
 @section('title', 'User Profile Panel')
