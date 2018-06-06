@@ -11,8 +11,14 @@ class TransferApplicationController extends Controller
         return view('transfercourses.myapplications');
     }
 
-    public function create()
+    public function newApp()
     {
         return view('transfercourses.newapplication');
     }
+
+    public function create()
+    {
+
+    }
+
 }
