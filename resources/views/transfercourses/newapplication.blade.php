@@ -46,13 +46,13 @@
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="courseCode">Course Code</label>
-                                        <input type="text" class="form-control" id="courseCode" name="courseCode" placeholder="Course Code">
+                                        <input type="text" class="form-control" id="courseCode" name="courseCode" placeholder="e.g. ECON102">
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="courseName">Course Title</label>
-                                        <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Full Course Title">
+                                        <input type="text" class="form-control" id="courseName" name="courseName" placeholder="e.g. Principle of Microeconomics ">
                                     </div>
                                 </div>
                             </div>
