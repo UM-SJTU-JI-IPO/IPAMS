@@ -49,7 +49,7 @@
                     </ul>
                 </li>
                 @if (isAdmin(Auth::user()))
-                    <li class="{{ isActiveRoute('usersManage') }}">
+                    <li class="{{ isActiveRoute('usersAdmin') }}">
                         <a href="{{ url('/usersadmin') }}"><i class="fa fa-address-book"></i> <span class="nav-label">Users Admin</span> </a>
                     </li>
                 @endif
