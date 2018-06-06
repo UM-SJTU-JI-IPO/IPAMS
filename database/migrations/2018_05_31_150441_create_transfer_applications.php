@@ -16,12 +16,14 @@ class CreateTransferApplications extends Migration
         Schema::create('transfer_applications', function (Blueprint $table) {
             $table->increments('applicationID');
             $table->string('sjtuID');
-            $table->string('evaluationID');
+            $table->string('evaluationID')->nullable();
             $table->string('courseID');
             $table->string('type');
+            $table->text('appComment');
+            $table->string('tcafFile');
+            $table->string('sjtuTransferFormFile')->nullable();
             $table->string('syllabusFile');
-            $table->string('applicationFormFile');
-            $table->string('additionalMaterialFile');
+            $table->string('additionalMaterialsFile')->nullable();
             $table->string('evaluationProgress');
             $table->string('evaluationResult');
             $table->string('evaluationInfo');
