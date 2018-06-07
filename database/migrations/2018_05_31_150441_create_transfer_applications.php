@@ -17,16 +17,15 @@ class CreateTransferApplications extends Migration
             $table->increments('applicationID');
             $table->string('sjtuID');
             $table->string('evaluationID')->nullable();
-            $table->string('courseID');
+            $table->string('courseID')->nullable();
             $table->string('type');
-            $table->text('appComment');
+            $table->text('appComment')->nullable();
             $table->string('tcafFile');
-            $table->string('sjtuTransferFormFile')->nullable();
             $table->string('syllabusFile');
             $table->string('additionalMaterialsFile')->nullable();
-            $table->string('evaluationProgress');
-            $table->string('evaluationResult');
-            $table->string('evaluationInfo');
+            $table->string('evaluationProgress')->nullable();
+            $table->string('evaluationResult')->nullable();
+            $table->string('evaluationInfo')->nullable();
             $table->timestamps();
         });
     }

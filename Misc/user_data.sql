@@ -33,7 +33,7 @@ USE `global_apply`;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('5143709199','戚培源',2018,'Local',2,9,1995,'1995-09-02','Male','berrieqi@sjtu.edu.cn','15857202877','PRC ID','330501199509029414','',NULL,NULL,'admin',NULL,'UwXMmryj6ShlwVjAp1ScT2YZpq1DyM2PrLArWsK6OmQWzXGtc7nS5PVhmDyT','2018-05-28 04:28:52','2018-05-28 05:10:35'),
+INSERT INTO `users` VALUES ('5143709199','戚培源',2018,'Local',2,9,1995,'1995-09-02','Male','berrieqi@sjtu.edu.cn','15857202877','PRC ID','330501199509029414','',NULL,NULL,'admin','avatars/5143709199','UwXMmryj6ShlwVjAp1ScT2YZpq1DyM2PrLArWsK6OmQWzXGtc7nS5PVhmDyT','2018-05-28 04:28:52','2018-05-28 05:10:35'),
                            ('515370910103','陈俞翰',2019,'Local',16,12,1996,'1996-12-16','Male','1025098066@qq.com','15705791667','PRC ID','330782199612160217','',NULL,NULL,'student',NULL,'2Nt8wAtMefogkQ28dK3vHm8SLljChztXFh8KmKMi1sTsLBzRgSeQhpISuPpW','2018-05-28 02:50:01','2018-05-31 07:43:37'),
                            ('60906','杜燕',NULL,'IPO',18,3,1981,'1981-03-18','Female','viva.du@sjtu.edu.cn','13917456823','PRC ID','310115198103188624',NULL,NULL,NULL,'admin',NULL,'F23kuXOjVELzWRkiWfy2lYpXp8Iv0yJNJN3O3Jc1AeVaekzXW7RgucLxwob0','2018-05-28 02:45:14','2018-05-28 05:50:07'),
                            ('63046','熊静怡',NULL,'IPO',27,12,1992,'1992-12-27','Female','jingyi.xiong@sjtu.edu.cn','17621375774','PRC ID','360103199212274124','',NULL,NULL,'admin',NULL,'NmNbBEg0AJpavNkvdtMQIkkmpY6cXbRMkCsin6Emnsf6sWudBBtQaQhT0qL8','2018-05-29 08:43:55','2018-05-29 08:45:08');
