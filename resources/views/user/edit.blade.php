@@ -24,7 +24,11 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-12" align="center">
                                                         <div class="form-group">
-                                                            <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
+                                                            @if(file_exists(public_path().'/storage/avatars/'.Auth::User()->sjtuID))
+                                                                <img alt="User Pic" src="{{ asset('storage/avatars/'.Auth::User()->sjtuID) }}" class="img-rounded img-responsive">
+                                                            @else
+                                                                <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
@@ -34,7 +38,7 @@
                                                             <div align="center">
                                                                 {{--TODO Implement change image function--}}
                                                                 {{--<a href="#" data-original-title="change image" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Change Image</a>--}}
-                                                                <label for="syllabus">Upload New ID Img (jpeg, png, bmp, gif, or svg)</label>
+                                                                <label for="syllabus">Upload New ID Image (jpeg, jpg or png)</label>
                                                                 <input type="file" style="border: 0;" id="newAvatar" name="newAvatar">
                                                             </div>
                                                         </div>
