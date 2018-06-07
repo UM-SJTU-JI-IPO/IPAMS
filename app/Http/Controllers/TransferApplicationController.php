@@ -64,6 +64,16 @@ class TransferApplicationController extends Controller
 
         $newCourse->save();
 
+        // Evaluation here
+
+        $newApplication = TransferApplication::create([
+            'sjtuID'    => $sjtuID,
+            'courseID'  => $newCourse->courseID,
+            'type'      => $request->appType,
+            'appComment'=> $request->appComment,
+            'status'        => 'Application Submitted',
+        ]);
+
         $basePath = 'transferCourses/';
         $folderName = $univShortName . $formatedCourseCode;
         if (!Storage::disk('public')->exists($basePath . $folderName))
@@ -74,13 +84,13 @@ class TransferApplicationController extends Controller
         $tcafFile = Storage::disk('public')->putFileAs(
             $basePath . $folderName,
             request()->file('tcaf'),
-            $newCourse->courseID . '_' . $request->courseCode . '_tcaf.pdf'
+            $newApplication->applicationID . '_' . $request->courseCode . '_tcaf.pdf'
         );
 
         $syllabusFile = Storage::disk('public')->putFileAs(
             $basePath . $folderName,
             request()->file('syllabus'),
-            $newCourse->courseID . '_' . $request->courseCode . '_syllabus.pdf'
+            $newApplication->applicationID . '_' . $request->courseCode . '_syllabus.pdf'
         );
 
         $addMaterialsFile = null;
@@ -88,21 +98,14 @@ class TransferApplicationController extends Controller
             $addMaterialsFile = Storage::disk('public')->putFileAs(
                 $basePath . $folderName,
                 request()->file('additionalMaterials'),
-                $newCourse->courseID . '_' . $request->courseCode . '_addtionalMaterials.zip'
+                $newApplication->applicationID . '_' . $request->courseCode . '_addtionalMaterials.zip'
             );
         }
 
-        // Evaluation
-
-        $newApplication = TransferApplication::create([
-            'sjtuID'    => $sjtuID,
-            'courseID'  => $newCourse->courseID,
-            'type'      => $request->appType,
-            'appComment'=> $request->appComment,
+        $newApplication->update([
             'tcafFile'  => $tcafFile,
             'syllabusFile'=> $syllabusFile,
             'additionalMaterialsFile'=> $addMaterialsFile,
-            'status'        => 'Application Submitted',
         ]);
 
         $newApplication->save();
