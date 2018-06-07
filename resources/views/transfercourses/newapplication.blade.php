@@ -13,7 +13,7 @@
                         <a href="/">Dashboard</a>
                     </li>
                     <li>
-                        <a href="/myApplication">Transfer Courses</a>
+                        <a href="/transferCourses/myApplication">Transfer Courses</a>
                     </li>
                     <li class="active">
                         <a href="/transferCourses/newApplication"><strong>New Transfer Application</strong></a>
