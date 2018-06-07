@@ -20,8 +20,8 @@ class CreateTransferApplications extends Migration
             $table->string('courseID')->nullable();
             $table->string('type');
             $table->text('appComment')->nullable();
-            $table->string('tcafFile');
-            $table->string('syllabusFile');
+            $table->string('tcafFile')->nullable();
+            $table->string('syllabusFile')->nullable();
             $table->string('additionalMaterialsFile')->nullable();
             $table->string('status');
             $table->string('evaluationProgress')->nullable();
