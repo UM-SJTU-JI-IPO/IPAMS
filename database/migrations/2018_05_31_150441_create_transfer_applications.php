@@ -23,6 +23,7 @@ class CreateTransferApplications extends Migration
             $table->string('tcafFile');
             $table->string('syllabusFile');
             $table->string('additionalMaterialsFile')->nullable();
+            $table->string('status');
             $table->string('evaluationProgress')->nullable();
             $table->string('evaluationResult')->nullable();
             $table->string('evaluationInfo')->nullable();
