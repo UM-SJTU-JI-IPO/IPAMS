@@ -9,12 +9,8 @@ class TransferCourse extends Model
     protected $table = 'transfer_courses';
     protected $primaryKey = 'courseID';
 
-    protected $fillable = [
-        'university',
-        'courseCode',
-        'status',
-        'activeTime',
-        'expireTime'
+    protected $guarded = [
+        'courseID'
     ];
 
     public function transferApplications()
