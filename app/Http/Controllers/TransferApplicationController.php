@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+use App\User;
 use App\TransferApplication;
 use App\TransferCourse;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
@@ -14,7 +15,8 @@ class TransferApplicationController extends Controller
 {
     public function index()
     {
-        return view('transfercourses.myapplications');
+        $applications = User::find(Auth::user()->sjtuID)->manyTransferApplications()->get();
+        return view('transfercourses.myapplications',['applications' => $applications]);
     }
 
     public function newApp()
@@ -43,11 +45,12 @@ class TransferApplicationController extends Controller
         $formatedCourseCode = strtoupper($request->courseCode);
         preg_match_all("/[A-Z]/", $univFormatedName, $univUCList);
         $univShortName = implode($univUCList[0]);
+
         $newCourse = TransferCourse::create([
             'university'    => $univFormatedName,
             'courseCode'    => $formatedCourseCode,
             'courseName'    => $request->courseName,
-            'status'        => 'Application Submitted',
+            'status'        => 'Pending',
         ]);
 
         if ($request->jiCourseCode) //or $request->jiCourseName
@@ -85,7 +88,7 @@ class TransferApplicationController extends Controller
             $addMaterialsFile = Storage::disk('public')->putFileAs(
                 $basePath . $folderName,
                 request()->file('additionalMaterials'),
-                $newCourse->courseID . '_' . $request->courseCode . '_addtionalMaterials.pdf'
+                $newCourse->courseID . '_' . $request->courseCode . '_addtionalMaterials.zip'
             );
         }
 
@@ -99,6 +102,7 @@ class TransferApplicationController extends Controller
             'tcafFile'  => $tcafFile,
             'syllabusFile'=> $syllabusFile,
             'additionalMaterialsFile'=> $addMaterialsFile,
+            'status'        => 'Application Submitted',
         ]);
 
         $newApplication->save();
