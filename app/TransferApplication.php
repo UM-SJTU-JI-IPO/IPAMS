@@ -15,11 +15,11 @@ class TransferApplication extends Model
 
     public function applier()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User','sjtuID','sjtuID');
     }
 
     public function appliedCourse()
     {
-        return $this->belongsTo('App\TransferCourse');
+        return $this->belongsTo('App\TransferCourse','courseID','courseID');
     }
 }
