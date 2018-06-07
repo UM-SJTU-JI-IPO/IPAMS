@@ -18,8 +18,8 @@
                                 <div class="panel-body">
                                     <div class="row m-b-xs">
                                         <div class="col-md-3 col-lg-3 " align="center">
-                                            @if(file_exists(public_path().'/storage/avatars/'.Auth::User()->sjtuID))
-                                                <img alt="User Pic" src="{{ asset('storage/avatars/'.Auth::User()->sjtuID) }}" class="img-rounded img-responsive">
+                                            @if(Auth::User()->avatarPath)
+                                                <img alt="User Pic" src="{{ asset('storage/'.Auth::User()->avatarPath) }}" class="img-rounded img-responsive">
                                             @else
                                                 <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
                                             @endif

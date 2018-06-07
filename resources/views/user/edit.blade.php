@@ -24,8 +24,8 @@
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-12" align="center">
                                                         <div class="form-group">
-                                                            @if(file_exists(public_path().'/storage/avatars/'.Auth::User()->sjtuID))
-                                                                <img alt="User Pic" src="{{ asset('storage/avatars/'.Auth::User()->sjtuID) }}" class="img-rounded img-responsive">
+                                                            @if(Auth::User()->avatarPath)
+                                                                <img alt="User Pic" src="{{ asset('storage/'.Auth::User()->avatarPath) }}" class="img-rounded img-responsive">
                                                             @else
                                                                 <img alt="User Pic" src="https://www.1plusx.com/app/mu-plugins/all-in-one-seo-pack-pro/images/default-user-image.png" class="img-rounded img-responsive">
                                                             @endif
