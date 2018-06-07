@@ -19,6 +19,7 @@ class CreateTransferCoursesTable extends Migration
             $table->string('courseCode');
             $table->string('courseName');
             $table->string('applicationID');
+            $table->boolean('ifEquivalent')->default(false);
             $table->string('jiCourseCode')->nullable();
             $table->string('jiCourseName')->nullable();
             $table->string('status');
