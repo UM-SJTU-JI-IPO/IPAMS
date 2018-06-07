@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->date('passportIssueDate')->nullable();
             $table->date('passportExpireDate')->nullable();
             $table->string('userType');
+            $table->string('avatarPath')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->primary('sjtuID');

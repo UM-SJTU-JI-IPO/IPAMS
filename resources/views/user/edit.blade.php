@@ -17,7 +17,7 @@
                                     </h3>
                                 </div>
                                 <div class="panel-body">
-                                    <form id="profile_form" method="POST" action="/user/edit">
+                                    <form id="profile_form" method="POST" action="/user/edit"  enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <div class="row m-b-xs">
                                             <div class="col-md-3 col-lg-3">
@@ -33,7 +33,9 @@
                                                         <div class="form-group">
                                                             <div align="center">
                                                                 {{--TODO Implement change image function--}}
-                                                                <a href="#" data-original-title="change image" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Change Image</a>
+                                                                {{--<a href="#" data-original-title="change image" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Change Image</a>--}}
+                                                                <label for="syllabus">Upload New ID Img (jpeg, png, bmp, gif, or svg)</label>
+                                                                <input type="file" style="border: 0;" id="newAvatar" name="newAvatar">
                                                             </div>
                                                         </div>
                                                     </div>

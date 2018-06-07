@@ -52,15 +52,21 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'visibility' => 'public',
+
+//            'cache' => [
+//                'store' => 'memcached',
+//                'expire' => 600,
+//                'prefix' => 'cache-public',
+//            ],
         ],
 
-        's3' => [
-            'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
-        ],
+//        's3' => [
+//            'driver' => 's3',
+//            'key' => 'your-key',
+//            'secret' => 'your-secret',
+//            'region' => 'your-region',
+//            'bucket' => 'your-bucket',
+//        ],
 
     ],
 
