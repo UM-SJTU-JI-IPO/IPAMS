@@ -38,12 +38,14 @@
                           ">
                     <a href="{{ url('/user') }}"><i class="fa fa-user"></i> <span class="nav-label">Profile</span> </a>
                 </li>
-                <li class="{{ isActiveRoute('transferPanel') }}
-                           {{ isActiveRoute('newTransferApplication') }}
-                           {{ isActiveRoute('myTransferApplications') }}
+                <li class=" {{ isActiveRoute('transferPanel') }}
+                            {{ isActiveRoute('newTransferApplication') }}
+                            {{ isActiveRoute('myTransferApplications') }}
+                            {{ isActiveRoute('allTransferCourses') }}
                         ">
                     <a><i class="fa fa-exchange"></i> <span class="nav-label">Transfer Courses</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        <li class="{{ isActiveRoute('allTransferCourses') }}"><a href="{{ url('/transferCourses/allCourses') }}">Course List</a></li>
                         <li class="{{ isActiveRoute('newTransferApplication') }}"><a href="{{ url('/transferCourses/newApplication') }}">New Application</a></li>
                         <li class="{{ isActiveRoute('myTransferApplications') }}"><a href="{{ url('/transferCourses/myApplication') }}">My Applications</a></li>
                     </ul>
