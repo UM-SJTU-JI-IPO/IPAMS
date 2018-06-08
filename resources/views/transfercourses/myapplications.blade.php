@@ -36,6 +36,7 @@
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
                             <th>Additional Explanation</th>
+                            <th>App Type</th>
                             <th>Status</th>
                             <th class="text-right" data-sort-ignore="true">Action</th>
 
@@ -74,6 +75,9 @@
                                     {{--<span class="label label-primary">Enable</span>--}}
                                 </td>
                                 <td>
+                                    {{ $app->type }}
+                                </td>
+                                <td>
                                     {{ $app->status }}
                                 </td>
                                 <td>
@@ -85,7 +89,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="10">
+                            <td colspan="11">
                                 <ul class="pagination pull-right"></ul>
                             </td>
                         </tr>
