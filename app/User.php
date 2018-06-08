@@ -45,7 +45,7 @@ class User extends Authenticatable
     protected $hidden = [
     ];
 
-    public function manyTransferApplications()
+    public function hasManyTransferApplications()
     {
         return $this->hasMany('App\TransferApplication','sjtuID','sjtuID');
     }
