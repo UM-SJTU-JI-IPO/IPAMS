@@ -43,15 +43,31 @@ class TransferApplicationController extends Controller
         $sjtuID = Auth::user()->sjtuID;
         $univFormatedName = ucwords(strtolower($request->univName));
         $formatedCourseCode = strtoupper($request->courseCode);
+
+        $potentialCourse = TransferCourse::where('university', $univFormatedName)
+                                         ->where('courseCode', $formatedCourseCode)
+                                         ->first();
+        if ($potentialCourse === null)
+        {
+            $newCourse = TransferCourse::create([
+                'university'    => $univFormatedName,
+                'courseCode'    => $formatedCourseCode,
+                'courseName'    => $request->courseName,
+                'status'        => 'Pending',
+            ]);
+        } else {
+            $newCourse = $potentialCourse;
+        }
+
+
+
+
+
+
         preg_match_all("/[A-Z]/", $univFormatedName, $univUCList);
         $univShortName = implode($univUCList[0]);
 
-        $newCourse = TransferCourse::create([
-            'university'    => $univFormatedName,
-            'courseCode'    => $formatedCourseCode,
-            'courseName'    => $request->courseName,
-            'status'        => 'Pending',
-        ]);
+
 
         if ($request->jiCourseCode) //or $request->jiCourseName
         {
