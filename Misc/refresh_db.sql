@@ -59,20 +59,20 @@ CREATE TABLE `transfer_applications` (
   `applicationID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `sjtuID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `evaluationID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `courseID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `courseID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `appComment` text COLLATE utf8_unicode_ci NOT NULL,
-  `tcafFile` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sjtuTransferFormFile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `syllabusFile` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `appComment` text COLLATE utf8_unicode_ci,
+  `tcafFile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `syllabusFile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `additionalMaterialsFile` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `evaluationProgress` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `evaluationResult` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `evaluationInfo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `evaluationProgress` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `evaluationResult` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `evaluationInfo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`applicationID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,6 +81,7 @@ CREATE TABLE `transfer_applications` (
 
 LOCK TABLES `transfer_applications` WRITE;
 /*!40000 ALTER TABLE `transfer_applications` DISABLE KEYS */;
+INSERT INTO `transfer_applications` VALUES (1,'5143709199',NULL,'1','New','','transferCourses/CWRUECON112/1_ECON112_tcaf.pdf','transferCourses/CWRUECON112/1_ECON112_syllabus.pdf',NULL,'Application Submitted',NULL,NULL,NULL,'2018-06-07 18:24:23','2018-06-07 18:24:23'),(2,'5143709199',NULL,'2','New','','transferCourses/CWRUECON112/2_ECON112_tcaf.pdf','transferCourses/CWRUECON112/2_ECON112_syllabus.pdf','transferCourses/CWRUECON112/2_ECON112_addtionalMaterials.zip','Application Submitted',NULL,NULL,NULL,'2018-06-07 18:25:26','2018-06-07 18:25:26');
 /*!40000 ALTER TABLE `transfer_applications` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,8 @@ CREATE TABLE `transfer_courses` (
   `university` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `courseCode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `courseName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `applicationID` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `applicationID` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ifEquivalent` tinyint(1) NOT NULL DEFAULT '0',
   `jiCourseCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `jiCourseName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -105,7 +107,7 @@ CREATE TABLE `transfer_courses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`courseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +116,7 @@ CREATE TABLE `transfer_courses` (
 
 LOCK TABLES `transfer_courses` WRITE;
 /*!40000 ALTER TABLE `transfer_courses` DISABLE KEYS */;
+INSERT INTO `transfer_courses` VALUES (1,'Case Western Reserve University','ECON112','Principle of Microeconmics','1',0,NULL,NULL,'Pending',NULL,NULL,'2018-06-07 18:24:23','2018-06-07 18:24:23'),(2,'Case Western Reserve University','ECON112','Principle of Microeconmics','2',1,'VX101','Principle of Microeconmics','Pending',NULL,NULL,'2018-06-07 18:25:26','2018-06-07 18:25:26');
 /*!40000 ALTER TABLE `transfer_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +161,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('5143709199','戚培源',2018,'Local',2,9,1995,'1995-09-02','Male','berrieqi@sjtu.edu.cn','15857202877','PRC ID','330501199509029414','',NULL,NULL,'admin',NULL,'UwXMmryj6ShlwVjAp1ScT2YZpq1DyM2PrLArWsK6OmQWzXGtc7nS5PVhmDyT','2018-05-28 04:28:52','2018-05-28 05:10:35'),('515370910103','陈俞翰',2019,'Local',16,12,1996,'1996-12-16','Male','1025098066@qq.com','15705791667','PRC ID','330782199612160217','',NULL,NULL,'student',NULL,'2Nt8wAtMefogkQ28dK3vHm8SLljChztXFh8KmKMi1sTsLBzRgSeQhpISuPpW','2018-05-28 02:50:01','2018-05-31 07:43:37'),('60906','杜燕',NULL,'IPO',18,3,1981,'1981-03-18','Female','viva.du@sjtu.edu.cn','13917456823','PRC ID','310115198103188624',NULL,NULL,NULL,'admin',NULL,'F23kuXOjVELzWRkiWfy2lYpXp8Iv0yJNJN3O3Jc1AeVaekzXW7RgucLxwob0','2018-05-28 02:45:14','2018-05-28 05:50:07'),('63046','熊静怡',NULL,'IPO',27,12,1992,'1992-12-27','Female','jingyi.xiong@sjtu.edu.cn','17621375774','PRC ID','360103199212274124','',NULL,NULL,'admin',NULL,'NmNbBEg0AJpavNkvdtMQIkkmpY6cXbRMkCsin6Emnsf6sWudBBtQaQhT0qL8','2018-05-29 08:43:55','2018-05-29 08:45:08');
+INSERT INTO `users` VALUES ('5143709199','戚培源',2018,'Local',2,9,1995,'1995-09-02','Male','berrieqi@sjtu.edu.cn','15857202877','PRC ID','330501199509029414','',NULL,NULL,'admin','avatars/5143709199','UwXMmryj6ShlwVjAp1ScT2YZpq1DyM2PrLArWsK6OmQWzXGtc7nS5PVhmDyT','2018-05-28 04:28:52','2018-05-28 05:10:35'),('515370910103','陈俞翰',2019,'Local',16,12,1996,'1996-12-16','Male','1025098066@qq.com','15705791667','PRC ID','330782199612160217','',NULL,NULL,'student',NULL,'2Nt8wAtMefogkQ28dK3vHm8SLljChztXFh8KmKMi1sTsLBzRgSeQhpISuPpW','2018-05-28 02:50:01','2018-05-31 07:43:37'),('60906','杜燕',NULL,'IPO',18,3,1981,'1981-03-18','Female','viva.du@sjtu.edu.cn','13917456823','PRC ID','310115198103188624',NULL,NULL,NULL,'admin',NULL,'F23kuXOjVELzWRkiWfy2lYpXp8Iv0yJNJN3O3Jc1AeVaekzXW7RgucLxwob0','2018-05-28 02:45:14','2018-05-28 05:50:07'),('63046','熊静怡',NULL,'IPO',27,12,1992,'1992-12-27','Female','jingyi.xiong@sjtu.edu.cn','17621375774','PRC ID','360103199212274124','',NULL,NULL,'admin',NULL,'NmNbBEg0AJpavNkvdtMQIkkmpY6cXbRMkCsin6Emnsf6sWudBBtQaQhT0qL8','2018-05-29 08:43:55','2018-05-29 08:45:08');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-07 10:26:45
+-- Dump completed on 2018-06-08 10:31:41
