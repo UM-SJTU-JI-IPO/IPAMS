@@ -62,7 +62,7 @@ class TransferApplicationController extends Controller
             ]);
         }
 
-        $newCourse->save();
+//        $newCourse->save();
 
         // Evaluation here
 
@@ -78,7 +78,7 @@ class TransferApplicationController extends Controller
         $folderName = $univShortName . $formatedCourseCode;
         if (!Storage::disk('public')->exists($basePath . $folderName))
         {
-            Storage::makeDirectory($basePath . $folderName);
+            Storage::disk('public')->makeDirectory($basePath . $folderName);
         }
 
         $tcafFile = Storage::disk('public')->putFileAs(
@@ -110,7 +110,19 @@ class TransferApplicationController extends Controller
 
         $newApplication->save();
 
+        $newCourse->update([
+            'applicationID' => $newApplication->applicationID,
+        ]);
+
+        $newCourse->save;
+
         return redirect()->route('myTransferApplications');
+    }
+
+    public function listCourses()
+    {
+        $courses = TransferCourse::all();
+        return view('transfercourses.allcourses', ['courses' => $courses]);
     }
 
 }
