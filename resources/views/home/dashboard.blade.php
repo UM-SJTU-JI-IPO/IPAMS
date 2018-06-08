@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <div class="text-center m-t-lg">
                     <h1>
-                        User Dashboard
+                        Welcome to IPAMS!
                     </h1>
                 </div>
             </div>
