@@ -25,6 +25,7 @@ Route::get('/usersadmin/{user_id}','UsersManageController@show');
 Route::put('/usersadmin/{user_id?}','UsersManageController@update');
 
 //Route::get('/transferCourses', 'TransferApplicationController@panel')->name("transferPanel");
+Route::get('/transferCourses/allCourses','TransferApplicationController@listCourses')->name("allTransferCourses");
 Route::get('/transferCourses/newApplication','TransferApplicationController@newApp')->name("newTransferApplication");
 Route::post('/transferCourses/newApplication','TransferApplicationController@create')->name("createTransferApplication");
 Route::get('/transferCourses/myApplication','TransferApplicationController@index')->name("myTransferApplications");
