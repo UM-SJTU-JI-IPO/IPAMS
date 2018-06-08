@@ -49,13 +49,13 @@
                                     {{ $app->applicationID }}
                                 </td>
                                 <td>
-                                    {{ $app->appliedCourse()->first()->university }}
+                                    {{ $app->course->university }}
                                 </td>
                                 <td>
-                                    {{ $app->appliedCourse()->first()->courseCode }}
+                                    {{ $app->course->courseCode }}
                                 </td>
                                 <td>
-                                    {{ $app->appliedCourse()->first()->courseName }}
+                                    {{ $app->course->courseName }}
                                 </td>
                                 <td>
                                     <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
