@@ -57,10 +57,10 @@
                                     {{ $app->appliedCourse()->first()->courseName }}
                                 </td>
                                 <td>
-                                    <a href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
                                 </td>
                                 <td>
-                                    <a href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
                                 </td>
                                 <td>
                                     @if ($app->additionalMaterialsFile)
