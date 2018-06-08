@@ -15,7 +15,11 @@ class TransferApplicationController extends Controller
 {
     public function index()
     {
-        $applications = User::find(Auth::user()->sjtuID)->manyTransferApplications()->get();
+        $applications = User::find(Auth::user()->sjtuID)->hasManyTransferApplications()->get();
+        foreach ($applications as $app)
+        {
+            $app->course = $app->appliedCourse()->first();
+        }
         return view('transfercourses.myapplications',['applications' => $applications]);
     }
 
