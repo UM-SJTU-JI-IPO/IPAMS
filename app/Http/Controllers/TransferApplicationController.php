@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\User;
 use App\TransferApplication;
 use App\TransferCourse;
+use App\TransferEvaluation;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
 class TransferApplicationController extends Controller
@@ -30,6 +31,7 @@ class TransferApplicationController extends Controller
 
     public function create()
     {
+        // Validate Form Inputs
         $this->validate(request(), [
             'univName' => 'required',
             'courseCode' => 'required',
@@ -43,11 +45,14 @@ class TransferApplicationController extends Controller
             'jiCourseName' => 'required_with_all:jiCourseCode',
         ]);
 
+        // Format Inputs
         $request = request();
         $sjtuID = Auth::user()->sjtuID;
         $univFormatedName = ucwords(strtolower($request->univName));
-        $formatedCourseCode = strtoupper($request->courseCode);
+        $courseCodeWithoutSpace = preg_replace('/\s+/', '', $request->courseCode);
+        $formatedCourseCode = strtoupper($courseCodeWithoutSpace);
 
+        // Check if submitted course exists
         $potentialCourse = TransferCourse::where('university', $univFormatedName)
                                          ->where('courseCode', $formatedCourseCode)
                                          ->first();
@@ -63,16 +68,11 @@ class TransferApplicationController extends Controller
             $newCourse = $potentialCourse;
         }
 
-
-
-
-
-
+        // Get Univ Short Name with Capital First Letters
         preg_match_all("/[A-Z]/", $univFormatedName, $univUCList);
         $univShortName = implode($univUCList[0]);
 
-
-
+        // If submitted course has corresponding JI course
         if ($request->jiCourseCode) //or $request->jiCourseName
         {
             $newCourse->update([
@@ -82,10 +82,7 @@ class TransferApplicationController extends Controller
             ]);
         }
 
-//        $newCourse->save();
-
-        // Evaluation here
-
+        // Create new application entry
         $newApplication = TransferApplication::create([
             'sjtuID'    => $sjtuID,
             'courseID'  => $newCourse->courseID,
@@ -94,6 +91,7 @@ class TransferApplicationController extends Controller
             'status'        => 'Application Submitted',
         ]);
 
+        // Generate uploaded files directory
         $basePath = 'transferCourses/';
         $folderName = $univShortName . $formatedCourseCode;
         if (!Storage::disk('public')->exists($basePath . $folderName))
@@ -101,18 +99,21 @@ class TransferApplicationController extends Controller
             Storage::disk('public')->makeDirectory($basePath . $folderName);
         }
 
+        // Store TCAF form
         $tcafFile = Storage::disk('public')->putFileAs(
             $basePath . $folderName,
             request()->file('tcaf'),
             $newApplication->applicationID . '_' . $request->courseCode . '_tcaf.pdf'
         );
 
+        // Store syllabus
         $syllabusFile = Storage::disk('public')->putFileAs(
             $basePath . $folderName,
             request()->file('syllabus'),
             $newApplication->applicationID . '_' . $request->courseCode . '_syllabus.pdf'
         );
 
+        // Store material if exists
         $addMaterialsFile = null;
         if ($request->hasFile('additionalMaterials')) {
             $addMaterialsFile = Storage::disk('public')->putFileAs(
@@ -122,19 +123,42 @@ class TransferApplicationController extends Controller
             );
         }
 
+        // Update file directory into DB
         $newApplication->update([
             'tcafFile'  => $tcafFile,
             'syllabusFile'=> $syllabusFile,
             'additionalMaterialsFile'=> $addMaterialsFile,
         ]);
 
-        $newApplication->save();
 
+
+        // Update new course with application ID and save course
         $newCourse->update([
             'applicationID' => $newApplication->applicationID,
         ]);
-
         $newCourse->save;
+
+        // Create new evaluations for submitted application
+        foreach (User::all()->where('instituteRole','IPO') as $evaluator) {
+            $newEvaluation = TransferEvaluation::create([
+                'applicationID'     => $newApplication->applicationID,
+                'evaluatorID'       => $evaluator->sjtuID,
+                'evaluatorType'     => 'IPO PreEval',
+                'evaluatorDecision' => 'Pending',
+                'evaluationStatus'  => 'Pending',
+            ]);
+            $newEvaluation->save();
+        }
+
+        // Update application columns related to evaluation
+        $newApplication->update([
+            'evaluationProgress'    => 'IPO PreEval',
+            'evaluationResult'      => 'Pending',
+        ]);
+
+        // Save new application
+        $newApplication->save();
+
 
         return redirect()->route('myTransferApplications');
     }
