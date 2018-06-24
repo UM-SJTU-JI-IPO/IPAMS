@@ -41,5 +41,5 @@ Route::get('/login/jaccount/callback', 'Auth\JaccountLoginController@handleProvi
 Route::get('/logout', 'SessionController@destroyer');
 
 /*Route::get('/mailable', function () {
-    return new App\Mail\welcomeMail(Auth::user());
+    return new App\Mail\newApplicationNotice(Auth::user()->name, '一个人');
 });*/

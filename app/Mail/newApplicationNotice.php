@@ -7,19 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class welcomeMail extends Mailable
+class newApplicationNotice extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $receiverName, $applierName;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($receiverName, $applierName)
     {
-        $this->user = $user;
+        $this->receiverName = $receiverName;
+        $this->applierName = $applierName;
     }
 
     /**
@@ -29,8 +30,7 @@ class welcomeMail extends Mailable
      */
     public function build()
     {
-        $this->subject = "[IPAMS] Welcome to IPAMS!";
-        return $this->view('emails.welcome');
+        $this->subject = "[IPAMS] Action Required: New Course Transfer Application Created";
+        return $this->view('emails.ActionRequired.newapplicationnotice');
     }
-
 }
