@@ -50,4 +50,9 @@ class User extends Authenticatable
         return $this->hasMany('App\TransferApplication','sjtuID','sjtuID');
     }
 
+    public function assignedApplications()
+    {
+        return $this->belongsToMany('App\TransferApplication', 'transfer_evaluations', 'evaluatorID', 'applicationID','sjtuID','applicationID');
+    }
+
 }

@@ -16,7 +16,6 @@ class CreateTransferApplications extends Migration
         Schema::create('transfer_applications', function (Blueprint $table) {
             $table->increments('applicationID');
             $table->string('sjtuID');
-            $table->string('evaluationID')->nullable();
             $table->string('courseID')->nullable();
             $table->string('type');
             $table->text('appComment')->nullable();

@@ -22,4 +22,9 @@ class TransferApplication extends Model
     {
         return $this->belongsTo('App\TransferCourse','courseID','courseID');
     }
+
+    public function assignedReviewers()
+    {
+        return $this->belongsToMany('App\User', 'transfer_evaluations', 'applicationID', 'evaluatorID','applicationID','sjtuID');
+    }
 }
