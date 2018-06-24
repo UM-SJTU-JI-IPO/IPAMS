@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\TransferEvaluation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\User;
 
 class TransferEvaluationController extends Controller
 {
@@ -14,7 +17,12 @@ class TransferEvaluationController extends Controller
      */
     public function index()
     {
-        //
+        $evaluations = User::find(Auth::user()->sjtuID)->assignedApplications()->get();
+        foreach ($evaluations as $app)
+        {
+            $app->course = $app->appliedCourse()->first();
+        }
+        return view('transfercourses.evaluations.index',['evaluations' => $evaluations]);
     }
 
     /**

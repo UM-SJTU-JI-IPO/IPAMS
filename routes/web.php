@@ -30,6 +30,8 @@ Route::get('/transferCourses/newApplication','TransferApplicationController@newA
 Route::post('/transferCourses/newApplication','TransferApplicationController@create')->name("createTransferApplication");
 Route::get('/transferCourses/myApplication','TransferApplicationController@index')->name("myTransferApplications");
 
+Route::get('/transferCourses/myEvaluation','TransferEvaluationController@index')->name("myCourseTransferEvaluations");
+
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 
 Route::get('/login/github', 'Auth\GithubLoginController@redirectToProvider');

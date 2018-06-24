@@ -45,6 +45,11 @@
                         ">
                     <a><i class="fa fa-exchange"></i> <span class="nav-label">Transfer Courses</span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
+                        @if (Auth::user()->ifHasEvaluations())
+                            <li class="{{ isActiveRoute('myCourseTransferEvaluations') }}">
+                                <a href="{{ url('/transferCourses/myEvaluation') }}">My Evaluations</a></li>
+                            </li>
+                        @endif
                         <li class="{{ isActiveRoute('allTransferCourses') }}"><a href="{{ url('/transferCourses/allCourses') }}">Course List</a></li>
                         <li class="{{ isActiveRoute('newTransferApplication') }}"><a href="{{ url('/transferCourses/newApplication') }}">New Application</a></li>
                         <li class="{{ isActiveRoute('myTransferApplications') }}"><a href="{{ url('/transferCourses/myApplication') }}">My Applications</a></li>
