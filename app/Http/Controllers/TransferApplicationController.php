@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\newApplicationNotice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 use App\User;
@@ -139,7 +141,7 @@ class TransferApplicationController extends Controller
         $newCourse->save;
 
         // Create new evaluations for submitted application
-        foreach (User::all()->where('instituteRole','IPO') as $evaluator) {
+        foreach (User::all()->where('instituteRole','=','IPO') as $evaluator) {
             $newEvaluation = TransferEvaluation::create([
                 'applicationID'     => $newApplication->applicationID,
                 'evaluatorID'       => $evaluator->sjtuID,
@@ -147,6 +149,7 @@ class TransferApplicationController extends Controller
                 'evaluatorDecision' => 'Pending',
                 'evaluationStatus'  => 'Pending',
             ]);
+            Mail::to($evaluator->email)->queue(new newApplicationNotice($evaluator->name, User::find($newApplication->sjtuID)->name));
             $newEvaluation->save();
         }
 
