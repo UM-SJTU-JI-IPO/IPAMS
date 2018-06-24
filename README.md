@@ -53,7 +53,7 @@ Please remeber to add the following line to hosts file of your computer to get a
 
 ### Attention
 
-Please ***DO NOT*** distribute the source codes of this project.
+Subject to the lisence, please ***DO NOT*** distribute the source codes of this project.
 
 
 
