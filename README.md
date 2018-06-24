@@ -51,9 +51,12 @@ Please remeber to add the following line to hosts file of your computer to get a
 
 
 
-### Attention
+### Licence
 
-Subject to the lisence, please ***DO NOT*** distribute the source codes of this project.
+Except for the code which is not the working result of this project, this project is using 
+[GNU GENERAL PUBLIC LICENSE](https://github.com/UM-SJTU-JI-IPO/IPAMS/blob/master/LICENSE).
+
+The commercial products which are used in this project are still subject to ***the original licences***.
 
 
 
