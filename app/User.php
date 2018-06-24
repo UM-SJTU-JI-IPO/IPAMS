@@ -55,4 +55,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\TransferApplication', 'transfer_evaluations', 'evaluatorID', 'applicationID','sjtuID','applicationID');
     }
 
+    public function ifHasEvaluations() {
+        if ($this->assignedApplications()->first()) {
+            return true;
+        }
+        return false;
+    }
+
 }
