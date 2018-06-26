@@ -54,8 +54,12 @@ class User extends Authenticatable
     public function assignedApplications()
     {
         return $this->belongsToMany('App\TransferApplication', 'transfer_evaluations',
-        'evaluatorID', 'applicationID',
-            'sjtuID','applicationID');
+                            'evaluatorID', 'applicationID',
+                                'sjtuID','applicationID')
+                    ->as('evaluation')
+                    ->withPivot('evaluationID','applicationID','evaluatorID','evaluatorType',
+                                         'evaluatorDecision','evaluatorComments','evaluationStatus',
+                                         'created_at','updated_at');
     }
 
     public function ifHasEvaluations() {
