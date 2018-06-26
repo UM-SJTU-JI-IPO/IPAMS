@@ -16,6 +16,11 @@ use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
 class TransferApplicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $applications = User::find(Auth::user()->sjtuID)->hasManyTransferApplications()->get();
