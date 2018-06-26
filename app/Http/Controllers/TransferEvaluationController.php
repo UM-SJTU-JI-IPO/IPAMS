@@ -17,12 +17,14 @@ class TransferEvaluationController extends Controller
      */
     public function index()
     {
-        $evaluations = User::find(Auth::user()->sjtuID)->assignedApplications()->get();
-        foreach ($evaluations as $app)
+        $user = Auth::user();
+        $appsToEval = $user->assignedApplications()->get();
+        foreach ($appsToEval as $app)
         {
             $app->course = $app->appliedCourse()->first();
+//            dd($app->pivot);
         }
-        return view('transfercourses.evaluations.index',['evaluations' => $evaluations]);
+        return view('transfercourses.evaluations.index',['appsToEval' => $appsToEval]);
     }
 
     /**

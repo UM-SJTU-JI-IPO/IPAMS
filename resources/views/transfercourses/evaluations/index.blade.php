@@ -13,7 +13,10 @@
                         <a href="/">Dashboard</a>
                     </li>
                     <li class="active">
-                        <a href="/transferCourses/myEvaluation">Applications to be Evaluated</a>
+                        <a href="/transferCourses/myEvaluation">My Evaluations</a>
+                    </li>
+                    <li>
+                        Application List
                     </li>
                 </ol>
             </div>
@@ -33,14 +36,14 @@
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
                             <th>Additional Explanation</th>
-                            <th>App Type</th>
-                            <th>Status</th>
+                            <th>Eval Progress</th>
+                            <th>My Decision</th>
                             <th class="text-right" data-sort-ignore="true">Action</th>
 
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach( $evaluations as $app )
+                        @foreach( $appsToEval as $app )
                             <tr>
                                 <td>
                                     {{ $app->applicationID }}
@@ -72,10 +75,10 @@
                                     {{--<span class="label label-primary">Enable</span>--}}
                                 </td>
                                 <td>
-                                    {{ $app->type }}
+                                    {{ $app->evaluationProgress }}
                                 </td>
                                 <td>
-                                    {{ $app->status }}
+                                    {{--{{ $app->pivot->evaluatorDecision }}--}}
                                 </td>
                                 <td>
 

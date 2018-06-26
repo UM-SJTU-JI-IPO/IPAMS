@@ -47,12 +47,15 @@ class User extends Authenticatable
 
     public function hasManyTransferApplications()
     {
-        return $this->hasMany('App\TransferApplication','sjtuID','sjtuID');
+        return $this->hasMany('App\TransferApplication',
+            'sjtuID','sjtuID');
     }
 
     public function assignedApplications()
     {
-        return $this->belongsToMany('App\TransferApplication', 'transfer_evaluations', 'evaluatorID', 'applicationID','sjtuID','applicationID');
+        return $this->belongsToMany('App\TransferApplication', 'transfer_evaluations',
+        'evaluatorID', 'applicationID',
+            'sjtuID','applicationID');
     }
 
     public function ifHasEvaluations() {

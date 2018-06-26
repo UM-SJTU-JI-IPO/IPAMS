@@ -15,16 +15,20 @@ class TransferApplication extends Model
 
     public function applier()
     {
-        return $this->belongsTo('App\User','sjtuID','sjtuID');
+        return $this->belongsTo('App\User',
+            'sjtuID','sjtuID');
     }
 
     public function appliedCourse()
     {
-        return $this->belongsTo('App\TransferCourse','courseID','courseID');
+        return $this->belongsTo('App\TransferCourse',
+            'courseID','courseID');
     }
 
     public function assignedReviewers()
     {
-        return $this->belongsToMany('App\User', 'transfer_evaluations', 'applicationID', 'evaluatorID','applicationID','sjtuID');
+        return $this->belongsToMany('App\User', 'transfer_evaluations',
+            'applicationID', 'evaluatorID',
+            'applicationID','sjtuID');
     }
 }
