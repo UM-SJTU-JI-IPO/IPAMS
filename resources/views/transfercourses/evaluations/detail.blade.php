@@ -85,7 +85,7 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="ibox ">
                             <div class="ibox-title">
-                                <h5>Review History</h5>
+                                <h5>Evaluation Progress</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -93,9 +93,99 @@
                                 </div>
                             </div>
                             <div class="ibox-content">
-                                <div class="row">
-                                    {{--Review History Code--}}
-                                </div>
+                                @if (!$IPOEvaluators->isEmpty())
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <h5>IPO PreEvaluation</h5>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Evaluator</th>
+                                                    <th>Status</th>
+                                                    <th>Decision</th>
+                                                    <th>Comments</th>
+                                                    <th>Updated Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($IPOEvaluators as $evaluator)
+                                                    <tr>
+                                                        <td>{{ $evaluator->evaluation->evaluationID }}</td>
+                                                        <td>{{ $evaluator->name }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->updated_at }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if (!$facultyEvaluators->isEmpty())
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <h5>JI Faculty Evaluation</h5>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Evaluator</th>
+                                                    <th>Status</th>
+                                                    <th>Decision</th>
+                                                    <th>Comments</th>
+                                                    <th>Updated Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($facultyEvaluators as $evaluator)
+                                                    <tr>
+                                                        <td>{{ $evaluator->evaluation->evaluationID }}</td>
+                                                        <td>{{ $evaluator->name }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->updated_at }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                @endif
+                                @if (!$UCEvaluators->isEmpty())
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <h5>UC Evaluation</h5>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Evaluator</th>
+                                                    <th>Status</th>
+                                                    <th>Decision</th>
+                                                    <th>Comments</th>
+                                                    <th>Updated Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($UCEvaluators as $evaluator)
+                                                    <tr>
+                                                        <td>{{ $evaluator->evaluation->evaluationID }}</td>
+                                                        <td>{{ $evaluator->name }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->updated_at }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

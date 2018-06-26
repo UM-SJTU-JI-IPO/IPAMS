@@ -28,7 +28,6 @@ class TransferEvaluationController extends Controller
         foreach ($appsToEval as $app)
         {
             $app->course = $app->appliedCourse()->first();
-
         }
         return view('transfercourses.evaluations.index',['appsToEval' => $appsToEval]);
     }
@@ -66,11 +65,27 @@ class TransferEvaluationController extends Controller
         $application = TransferApplication::find($evaluation->applicationID);
         $applier = $application->applier;
         $course = $application->appliedCourse;
+        $relatedEvaluators = $application->assignedReviewers;
+        $IPOEvaluators = $relatedEvaluators->filter(
+            function ($user) {
+                return $user->evaluation->evaluatorType == 'IPO PreEval';
+            });
+        $facultyEvaluators = $relatedEvaluators->filter(
+            function ($user) {
+                return $user->evaluation->evaluatorType == 'Faculty PreEval';
+            });
+        $UCEvaluators = $relatedEvaluators->filter(
+            function ($user) {
+                return $user->evaluation->evaluatorType == 'UC PreEval';
+            });
         return view('transfercourses.evaluations.detail',[
-            'evaluation' => $evaluation,
-            'application'=> $application,
-            'applier'    => $applier,
-            'course'     => $course
+            'evaluation'            => $evaluation,
+            'application'           => $application,
+            'applier'               => $applier,
+            'course'                => $course,
+            'IPOEvaluators'         => $IPOEvaluators,
+            'facultyEvaluators'     => $facultyEvaluators,
+            'UCEvaluators'          => $UCEvaluators
         ]);
     }
 
