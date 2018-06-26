@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TransferApplication;
 use App\TransferEvaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,11 @@ class TransferEvaluationController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $appsToEval = $user->assignedApplications()->get();
+        $appsToEval = $user->assignedApplications;
         foreach ($appsToEval as $app)
         {
             $app->course = $app->appliedCourse()->first();
-//            dd($app->pivot);
+
         }
         return view('transfercourses.evaluations.index',['appsToEval' => $appsToEval]);
     }
@@ -51,12 +52,21 @@ class TransferEvaluationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\TransferEvaluation  $transferEvaluation
+     * @param  $evaluationID
      * @return \Illuminate\Http\Response
      */
-    public function show(TransferEvaluation $transferEvaluation)
+    public function show($evaluationID)
     {
-        //
+        $evaluation = TransferEvaluation::find($evaluationID);
+        $application = TransferApplication::find($evaluation->applicationID);
+        $applier = $application->applier;
+        $course = $application->appliedCourse;
+        return view('transfercourses.evaluations.detail',[
+            'evaluation' => $evaluation,
+            'application'=> $application,
+            'applier'    => $applier,
+            'course'     => $course
+        ]);
     }
 
     /**

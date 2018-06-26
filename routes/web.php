@@ -31,6 +31,7 @@ Route::post('/transferCourses/newApplication','TransferApplicationController@cre
 Route::get('/transferCourses/myApplication','TransferApplicationController@index')->name("myTransferApplications");
 
 Route::get('/transferCourses/myEvaluation','TransferEvaluationController@index')->name("myCourseTransferEvaluations");
+Route::get('/transferCourses/myEvaluation/{evaluationID}','TransferEvaluationController@show')->name("currentEvaluation");
 
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 

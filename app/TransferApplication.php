@@ -28,7 +28,11 @@ class TransferApplication extends Model
     public function assignedReviewers()
     {
         return $this->belongsToMany('App\User', 'transfer_evaluations',
-            'applicationID', 'evaluatorID',
-            'applicationID','sjtuID');
+                    'applicationID', 'evaluatorID',
+                        'applicationID','sjtuID')
+                    ->as('evaluation')
+                    ->withPivot('evaluationID','applicationID','evaluatorID','evaluatorType',
+                                         'evaluatorDecision','evaluatorComments','evaluationStatus',
+                                         'created_at','updated_at');
     }
 }

@@ -35,10 +35,9 @@
                             <th>TCAF</th>
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
-                            <th>Additional Explanation</th>
                             <th>Eval Progress</th>
                             <th>My Decision</th>
-                            <th class="text-right" data-sort-ignore="true">Action</th>
+                            <th class="text-right" data-sort-ignore="true">Detail</th>
 
                         </tr>
                         </thead>
@@ -58,30 +57,26 @@
                                     {{ $app->course->courseName }}
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs">View</button></a>
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs">View</button></a>
                                 </td>
                                 <td>
                                     @if ($app->additionalMaterialsFile)
-                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-primary btn btn-xs setAdmin">Download</button></a>
+                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-primary btn btn-xs">Download</button></a>
                                     @else
                                         No Material
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $app->appComment }}
-                                    {{--<span class="label label-primary">Enable</span>--}}
-                                </td>
-                                <td>
                                     {{ $app->evaluationProgress }}
                                 </td>
                                 <td>
-                                    {{--{{ $app->pivot->evaluatorDecision }}--}}
+                                    {{ $app->evaluation->evaluatorDecision }}
                                 </td>
                                 <td>
-
+                                    <a target="_blank" href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}"><button class="btn-primary btn btn-xs">Review</button></a>
                                 </td>
                             </tr>
                         @endforeach
