@@ -78,6 +78,7 @@ class TransferEvaluationController extends Controller
             function ($user) {
                 return $user->evaluation->evaluatorType == 'UC PreEval';
             });
+
         return view('transfercourses.evaluations.detail',[
             'evaluation'            => $evaluation,
             'application'           => $application,

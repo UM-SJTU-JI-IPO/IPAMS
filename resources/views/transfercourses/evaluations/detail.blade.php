@@ -114,8 +114,8 @@
                                                         <td>{{ $evaluator->evaluation->evaluationID }}</td>
                                                         <td>{{ $evaluator->name }}</td>
                                                         <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorComments }}</td>
                                                         <td>{{ $evaluator->evaluation->updated_at }}</td>
                                                     </tr>
                                                 @endforeach
@@ -145,8 +145,8 @@
                                                         <td>{{ $evaluator->evaluation->evaluationID }}</td>
                                                         <td>{{ $evaluator->name }}</td>
                                                         <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorComments }}</td>
                                                         <td>{{ $evaluator->evaluation->updated_at }}</td>
                                                     </tr>
                                                 @endforeach
@@ -176,8 +176,8 @@
                                                         <td>{{ $evaluator->evaluation->evaluationID }}</td>
                                                         <td>{{ $evaluator->name }}</td>
                                                         <td>{{ $evaluator->evaluation->evaluationStatus }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationDecision }}</td>
-                                                        <td>{{ $evaluator->evaluation->evaluationComments }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorDecision }}</td>
+                                                        <td>{{ $evaluator->evaluation->evaluatorComments }}</td>
                                                         <td>{{ $evaluator->evaluation->updated_at }}</td>
                                                     </tr>
                                                 @endforeach
@@ -208,19 +208,46 @@
                                             <div class="form-group">
                                                 <label for="newGender">Decision</label><br>
                                                 <select class="selectpicker form-control" id="newGender" name="newGender">
-                                                    <option selected value="Pending">Pending</option>
-                                                    <option value="Approved">Approve</option>
-                                                    <option value="Rejected">Reject</option>
-                                                    <option value="FMR">Further Materials Required</option>
+                                                    <option {{ isSelected('Pending', $evaluation->evaluatorDecision) }} value="Pending">Pending</option>
+                                                    <option {{ isSelected('Approved', $evaluation->evaluatorDecision) }} value="Approved">Approve</option>
+                                                    <option {{ isSelected('Rejected', $evaluation->evaluatorDecision) }} value="Rejected">Reject</option>
+                                                    <option {{ isSelected('FMR', $evaluation->evaluatorDecision) }} value="FMR">Further Materials Required</option>
                                                 </select>
                                             </div>
 
-                                            <div class="row">
-                                                <div class="col-md-12 col-lg-12">
-                                                    <label>Additional Comments</label>
-                                                    <textarea class="col-md-12 col-lg-12" name="appComment" id="appComment" rows="3"></textarea>
-                                                </div>
+                                            <div class="form-group">
+                                                <label>Additional Comments</label>
+                                                <textarea class="col-md-12 col-lg-12" name="addComment" id="addComment" rows="3"></textarea>
                                             </div>
+
+                                            @if ($evaluation->evaluatorType == 'IPO PreEval')
+                                                <div class="row m-t-md">
+                                                    <div class="col-md-6 col-lg-6">
+                                                        <h4>Assign Faculty for First Evaluation</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Faculty Name</label>
+                                                            <input type="text" class="form-control" id="facultyName" name="facultyName" placeholder="e.g. 郑刚">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Faculty SJTU ID</label>
+                                                            <input type="text" class="form-control" id="facultySJTUID" name="facultySJTUID" placeholder="SJTU ID" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Faculty Email</label>
+                                                            <input type="text" class="form-control" id="facultyEmail" name="facultyEmail" placeholder="Email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                             <div>
                                                 <button class="btn btn-sm btn-primary float-right m-t-md" type="submit"><strong>
                                                 @if($evaluation->evaluatorDecision == 'Pending')
