@@ -28,13 +28,14 @@
                     <table class="footable table table-stripped table-hover" data-page-size="15">
                         <thead>
                         <tr>
-                            <th>Application ID</th>
+                            <th>App #</th>
                             <th>University</th>
                             <th>Course Code</th>
                             <th>Course Name</th>
                             <th>TCAF</th>
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
+                            <th>App Progress</th>
                             <th>Eval Type</th>
                             <th>My Decision</th>
                             <th class="text-right" data-sort-ignore="true">Detail</th>
@@ -70,13 +71,20 @@
                                     @endif
                                 </td>
                                 <td>
+                                    {{ $app->evaluationProgress }}
+                                </td>
+                                <td>
                                     {{ $app->evaluation->evaluatorType }}
                                 </td>
                                 <td>
                                     {{ $app->evaluation->evaluatorDecision }}
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}"><button class="btn-primary btn btn-xs">Review</button></a>
+                                    @if ($app->evaluationProgress == $app->evaluation->evaluatorType)
+                                        <a target="_blank" href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}"><button class="btn-primary btn btn-xs">Review</button></a>
+                                    @else
+                                        <span class="label label-warning">Closed</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
