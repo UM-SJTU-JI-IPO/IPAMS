@@ -35,7 +35,7 @@
                             <th>TCAF</th>
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
-                            <th>Eval Progress</th>
+                            <th>Eval Type</th>
                             <th>My Decision</th>
                             <th class="text-right" data-sort-ignore="true">Detail</th>
 
@@ -70,7 +70,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    {{ $app->evaluationProgress }}
+                                    {{ $app->evaluation->evaluatorType }}
                                 </td>
                                 <td>
                                     {{ $app->evaluation->evaluatorDecision }}
