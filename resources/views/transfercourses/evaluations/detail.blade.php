@@ -204,11 +204,15 @@
                             <div class="ibox-content">
                                 <div class="row">
                                     <div class="col-sm-12 b-r">
-                                        <form role="form">
+                                        <form id="evaluation_form" method="POST" action="/transferCourses/myEvaluation/{{ $evaluation->evaluationID }}"  enctype="multipart/form-data">
+                                            {{ csrf_field() }}
                                             <div class="form-group">
-                                                <label for="newGender">Decision</label><br>
-                                                <select class="selectpicker form-control" id="newGender" name="newGender">
+                                                <label for="newDecision">Decision</label><br>
+                                                <select class="selectpicker form-control" id="newDecision" name="newDecision">
                                                     <option {{ isSelected('Pending', $evaluation->evaluatorDecision) }} value="Pending">Pending</option>
+                                                    @if ($evaluation->evaluatorType == 'Faculty Eval')
+                                                        <option value="Declined">Decline to Evaluate</option>
+                                                    @endif
                                                     <option {{ isSelected('Approved', $evaluation->evaluatorDecision) }} value="Approved">Approve</option>
                                                     <option {{ isSelected('Rejected', $evaluation->evaluatorDecision) }} value="Rejected">Reject</option>
                                                     <option {{ isSelected('FMR', $evaluation->evaluatorDecision) }} value="FMR">Further Materials Required</option>
@@ -217,7 +221,7 @@
 
                                             <div class="form-group">
                                                 <label>Additional Comments</label>
-                                                <textarea class="col-md-12 col-lg-12" name="addComment" id="addComment" rows="3"></textarea>
+                                                <textarea class="col-md-12 col-lg-12" name="addComment" id="addComment" rows="3" maxlength="1024"></textarea>
                                             </div>
 
                                             @if ($evaluation->evaluatorType == 'IPO PreEval')
@@ -229,22 +233,16 @@
                                                 <div class="row">
                                                     <div class="col-md-4 col-lg-4">
                                                         <div class="form-group">
-                                                            <label>Faculty Name</label>
-                                                            <input type="text" class="form-control" id="facultyName" name="facultyName" placeholder="e.g. 郑刚">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 col-lg-4">
-                                                        <div class="form-group">
                                                             <label>Faculty SJTU ID</label>
-                                                            <input type="text" class="form-control" id="facultySJTUID" name="facultySJTUID" placeholder="SJTU ID" required>
+                                                            <input type="text" class="form-control" id="facultySJTUID" name="facultySJTUID" placeholder="SJTU ID">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4 col-lg-4">
+                                                    {{--<div class="col-md-4 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Faculty Email</label>
                                                             <input type="text" class="form-control" id="facultyEmail" name="facultyEmail" placeholder="Email">
                                                         </div>
-                                                    </div>
+                                                    </div>--}}
                                                 </div>
                                             @endif
 
@@ -258,6 +256,7 @@
                                                 </strong></button>
                                             </div>
                                         </form>
+                                        @include('errors.validate')
                                     </div>
                                 </div>
                             </div>

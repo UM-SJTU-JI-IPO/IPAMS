@@ -32,6 +32,7 @@ Route::get('/transferCourses/myApplication','TransferApplicationController@index
 
 Route::get('/transferCourses/myEvaluation','TransferEvaluationController@index')->name("myCourseTransferEvaluations");
 Route::get('/transferCourses/myEvaluation/{evaluationID}','TransferEvaluationController@show')->name("currentEvaluation");
+Route::post('/transferCourses/myEvaluation/{evaluationID}','TransferEvaluationController@update')->name("updateEvaluation");
 
 Route::get('/login', 'Auth\LoginController@create')->name("generalLogin");
 

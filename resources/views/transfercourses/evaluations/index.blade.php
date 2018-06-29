@@ -28,6 +28,7 @@
                     <table class="footable table table-stripped table-hover" data-page-size="15">
                         <thead>
                         <tr>
+                            <th>Eval #</th>
                             <th>App #</th>
                             <th>University</th>
                             <th>Course Code</th>
@@ -45,6 +46,9 @@
                         <tbody>
                         @foreach( $appsToEval as $app )
                             <tr>
+                                <td>
+                                    {{ $app->evaluation->evaluationID }}
+                                </td>
                                 <td>
                                     {{ $app->applicationID }}
                                 </td>
@@ -80,7 +84,8 @@
                                     {{ $app->evaluation->evaluatorDecision }}
                                 </td>
                                 <td>
-                                    @if ($app->evaluationProgress == $app->evaluation->evaluatorType)
+                                    @if ($app->evaluation->evaluationStatus != 'Decided'
+                                      && $app->evaluation->evaluationStatus != 'Declined')
                                         <a target="_blank" href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}"><button class="btn-primary btn btn-xs">Review</button></a>
                                     @else
                                         <span class="label label-warning">Closed</span>
@@ -92,7 +97,7 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td colspan="11">
+                            <td colspan="12">
                                 <ul class="pagination pull-right"></ul>
                             </td>
                         </tr>

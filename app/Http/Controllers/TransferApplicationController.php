@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\newApplicationNotice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -12,6 +11,8 @@ use App\User;
 use App\TransferApplication;
 use App\TransferCourse;
 use App\TransferEvaluation;
+use App\Mail\newApplicationNotice;
+
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
 
 class TransferApplicationController extends Controller
