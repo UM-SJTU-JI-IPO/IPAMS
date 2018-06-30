@@ -36,7 +36,6 @@
                                                     <div class="col-sm-12 col-md-12 col-lg-12">
                                                         <div class="form-group">
                                                             <div align="center">
-                                                                {{--TODO Implement change image function--}}
                                                                 {{--<a href="#" data-original-title="change image" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Change Image</a>--}}
                                                                 <label for="syllabus">Upload New ID Image (jpeg, jpg or png)</label>
                                                                 <input type="file" style="border: 0;" id="newAvatar" name="newAvatar">
