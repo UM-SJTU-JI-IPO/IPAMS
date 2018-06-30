@@ -8,7 +8,8 @@
     <i>{{ $course->university }} {{ $course->courseCode }} {{ $course->courseName }}</i> <br><br>
 
     was submitted by <strong>{{ $applierName }}</strong> and waiting for
-    {{ $evaluation->evaluatorType }} {{ $evaluation->evaluationStatus }} decision
+    {{--TODO Fix eval status lagging
+    <strong>{{ $evaluation->evaluatorType }} {{ $evaluation->evaluationStatus }}</strong> --}}decision
     , please <a href="http://ipams.xyz">Login</a> to check.
 
 

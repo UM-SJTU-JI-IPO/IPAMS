@@ -7,10 +7,10 @@
 
     <i>{{ $course->university }} {{ $course->courseCode }} {{ $course->courseName }}</i> <br><br>
 
-    needs more supplimental materials.<br><br>
+    status is changed to <strong>{{ $application->status }}</strong>.<br><br>
 
-    The evaluator's comment is:
-    <blockquote>{{ $evaluation->evaluatorComments }}</blockquote>
+    {{--The evaluator's comment is:<br>
+    {{ $evaluation->evaluatorComments }}<br>--}}
 
     Please <a href="http://ipams.xyz">Login</a> to check.
 

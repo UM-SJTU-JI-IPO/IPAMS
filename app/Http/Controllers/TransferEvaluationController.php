@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\newEvaluationNotice;
+use App\Mail\newMaterialRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 use App\User;
 use App\TransferApplication;
 use App\TransferEvaluation;
-use App\Mail\newApplicationNotice;
 
 class TransferEvaluationController extends Controller
 {
@@ -120,6 +120,16 @@ class TransferEvaluationController extends Controller
 
         // Update current evaluation values
         $evaluation = TransferEvaluation::find($evaluationID);
+        // Early validation to avoid dirtying DB
+        if ($evaluation->evaluatorType == 'IPO PreEval' && $request->newDecision == 'Approved') {
+            // TODO Check Evaluator existence
+
+            $this->validate(request(), [
+                'facultySjtuId' =>  'required|numeric'
+            ]);
+        }
+
+        // Update evaluation
         $evaluation->update([
             'evaluatorDecision' => $request->newDecision,
             'evaluatorComments' => $request->addComment,
@@ -146,18 +156,12 @@ class TransferEvaluationController extends Controller
 
         // Create new evaluation for assigned faculty if current evaluation is "IPO PreEval"
         if ($evaluation->evaluatorType == 'IPO PreEval') {
-            $this->validate(request(), [
-                'facultySJTUID' =>  'required|numeric'
-            ]);
-
-            // TODO Check Evaluator existence
-
             // Update other IPO evaluations status
             $restIPOEvaluators = $application->assignedReviewers->filter(
                 function ($user) {
                     return  $user->evaluation->evaluatorType == 'IPO PreEval'
                         && ($user->evaluation->evaluationStatus == 'Pending'
-                        ||  $user->evaluation->evaluationStatus == 'Reassigning');
+                            ||  $user->evaluation->evaluationStatus == 'Reassigning');
                 });
             foreach ($restIPOEvaluators as $eachEvaluator) {
                 $eachEvaluator->evaluation->update([
@@ -168,26 +172,50 @@ class TransferEvaluationController extends Controller
                 $eachEvaluator->evaluation->save();
             }
 
-            // Assign faculty evaluator
-            $newEvaluation = TransferEvaluation::create([
-                'applicationID'     => $evaluation->applicationID,
-                'evaluatorID'       => $request->facultySJTUID,
-                'evaluatorType'     => 'Faculty Eval',
-                'evaluatorDecision' => 'Pending',
-                'evaluationStatus'  => 'Pending',
-            ]);
-            $facultyEvaluator = User::find($request->facultySJTUID);
-            Mail::to($facultyEvaluator->email)
-                ->queue(new newEvaluationNotice(
-                    $facultyEvaluator->name,
+            // apply changes according to decision
+            if ($request->newDecision == 'Approved') {
+                // Assign faculty evaluator
+                $newEvaluation = TransferEvaluation::create([
+                    'applicationID'     => $evaluation->applicationID,
+                    'evaluatorID'       => $request->facultySjtuId,
+                    'evaluatorType'     => 'Faculty Eval',
+                    'evaluatorDecision' => 'Pending',
+                    'evaluationStatus'  => 'Pending',
+                ]);
+                $facultyEvaluator = User::find($request->facultySjtuId);
+                Mail::to($facultyEvaluator->email)
+                    ->queue(new newEvaluationNotice(
+                            $facultyEvaluator->name,
+                            $applier->name,
+                            $evaluation,
+                            $course)
+                    );
+                $newEvaluation->save();
+                // Update application evaluationProgress
+                $application->updateProgress('Faculty Eval');
+                $application->updateStatus('Under Faculty Reviewing');
+                // Email Applier, must do after update application
+                $application->emailApplier($applier, $evaluation, $course);
+            } elseif ($request->newDecision == 'Rejected') {
+                // Update application evaluationProgress
+                $application->updateProgress('Eval Completed');
+                $application->updateStatus('Review Completed');
+                // Email Applier, must do after update application
+                $application->emailApplier($applier, $evaluation, $course);
+            } elseif ($request->newDecision == 'FMR') {
+                // Email student for FMR
+                Mail::to($applier->email)->queue(new newMaterialRequest(
                     $applier->name,
+                    $application,
                     $evaluation,
-                    $course)
-                );
-            $newEvaluation->save();
-            // Update application evaluationProgress
-            $application->updateProgress('Faculty Eval');
-            $application->updateStatus('Under Faculty Reviewing');
+                    $course
+                ));
+
+                // Update application evaluationProgress
+                $application->updateStatus('Further Materials Requested');
+            } else {
+                // Still Pending, no action
+            }
         }
 
         // if current evaluation is "Faculty Eval"
@@ -204,13 +232,13 @@ class TransferEvaluationController extends Controller
                         'evaluationStatus'  => 'Pending',
                     ]);
 //                    TODO Email UC weekly
-//                  Mail::to($evaluator->email)
-//                        ->queue(new newApplicationNotice($evaluator->name, User::find($application->sjtuID)->name));
                     $newEvaluation->save();
                 }
                 // Update application evaluationProgress
                 $application->updateProgress('UC Eval');
                 $application->updateStatus('Under UC Reviewing');
+                // Email Applier, must do after update application
+                $application->emailApplier($applier, $evaluation, $course);
             } elseif ($request->newDecision == 'Declined') {
                 // this faculty refused to evaluate this application
                 // IPO reassign this application
@@ -236,13 +264,13 @@ class TransferEvaluationController extends Controller
                         $eachEval,
                         $course
                     ));
-
                 }
 
                 // Update application evaluationProgress
-                $application->update([
-                    'evaluationProgress' => 'IPO PreEval'
-                ]);
+                $application->updateProgress('IPO PreEval');
+                $application->updateStatus('Application Submitted');
+                // Email Applier, must do after update application
+                $application->emailApplier($applier, $evaluation, $course);
             } elseif ($request->newDecision == 'FMR') {
                 // Email student for FMR
                 Mail::to($applier->email)->queue(new newMaterialRequest(
@@ -254,6 +282,8 @@ class TransferEvaluationController extends Controller
 
                 // Update application evaluationProgress
                 $application->updateStatus('Further Materials Requested');
+            } else {
+                // Still Pending, no action
             }
         }
 
@@ -272,8 +302,26 @@ class TransferEvaluationController extends Controller
                         ++$ayeCount;
                     }
                 }
-                // Notice IPO result
+                // Notice IPO result and update rest UC evaluations which are not decided
                 if ($ayeCount >= 0.5 * count($eachEvaluator)) {
+                    // get result undecided UC evaluations
+                    $restUCEval = TransferEvaluation::where([
+                            ['applicationID','=',$application->applicationID],
+                            ['evaluatorType','=','UC Eval'],
+                            ['evaluationStatus','=','Pending']
+                        ]
+                    )->get();
+                    // all UC Eval status become Decided
+                    foreach ($restUCEval as $eachEval) {
+                        $eachEval->update([
+                            'evaluatorDecision' => 'Approved',
+                            'evaluatorComments' => 'Majority Decision',
+                            'evaluationStatus'  => 'Decided',
+                        ]);
+                        $eachEval->save();
+                    }
+
+
                     foreach (User::all()->where('instituteRole','=','IPO') as $evaluator) {
                         $newEvaluation = TransferEvaluation::create([
                             'applicationID'     => $evaluation->applicationID,
@@ -295,6 +343,8 @@ class TransferEvaluationController extends Controller
                     // Update application evaluationProgress
                     $application->updateProgress('IPO Confirm');
                     $application->updateStatus('IPO Confirming');
+                    // Email Applier, must do after update application
+                    $application->emailApplier($applier, $evaluation, $course);
                 }
             } elseif ($request->newDecision == 'FMR') {
                 // Email student for FMR
@@ -304,9 +354,10 @@ class TransferEvaluationController extends Controller
                     $evaluation,
                     $course
                 ));
-
                 // Update application evaluationProgress
                 $application->updateStatus('Further Materials Requested');
+            } else {
+                // Still Pending, no action
             }
         }
 
@@ -333,6 +384,8 @@ class TransferEvaluationController extends Controller
             ]);
             $application->updateProgress('Eval Completed');
             $application->updateStatus('Review Completed');
+            // Email Applier, must do after update application
+            $application->emailApplier($applier, $evaluation, $course);
         }
 
         // Save Updated Application

@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Mail\applicationStatusChange;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class TransferApplication extends Model
 {
@@ -46,5 +48,15 @@ class TransferApplication extends Model
         $this->update([
             'status'   => $status
         ]);
+    }
+
+    public function emailApplier($applier, $evaluation, $course) {
+        Mail::to($applier->email)
+            ->queue(new applicationStatusChange(
+                    $applier->name,
+                    $this,
+                    $evaluation,
+                    $course)
+            );
     }
 }

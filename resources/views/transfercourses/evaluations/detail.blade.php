@@ -150,8 +150,7 @@
                         </div>
                     </div>
                 </div>
-                @if ($evaluation->evaluationStatus != 'Decided'
-                  && $evaluation->evaluationStatus != 'Declined')
+                @if ($evaluation->evaluationStatus != 'Declined')
                     <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="ibox ">
@@ -201,7 +200,7 @@
                                                     <div class="col-md-4 col-lg-4">
                                                         <div class="form-group">
                                                             <label>Faculty SJTU ID</label>
-                                                            <input type="text" class="form-control" id="facultySJTUID" name="facultySJTUID" placeholder="SJTU ID">
+                                                            <input type="text" class="form-control" id="facultySjtuId" name="facultySjtuId" placeholder="SJTU ID">
                                                         </div>
                                                     </div>
                                                     {{--<div class="col-md-4 col-lg-4">
@@ -243,13 +242,15 @@
                                             @endif
 
                                             <div>
-                                                <button class="btn btn-sm btn-primary float-right m-t-md" type="submit"><strong>
                                                 @if($evaluation->evaluatorDecision == 'Pending')
-                                                    Make Decision
+                                                    <button class="btn btn-sm btn-primary float-right m-t-md" type="submit"><strong>
+                                                        Make Decision
+                                                    </strong></button>
                                                 @else
-                                                    Update Decision
+                                                    <button class="btn btn-sm btn-warning float-right m-t-md" type="submit"><strong>
+                                                        Update Decision
+                                                    </strong></button>
                                                 @endif
-                                                </strong></button>
                                             </div>
                                         </form>
                                         @include('errors.validate')

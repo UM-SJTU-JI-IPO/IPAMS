@@ -7,21 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newEvaluationNotice extends Mailable
+class applicationStatusChange extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $receiverName, $applierName, $evaluation, $course;
+    public $receiverName, $application, $evaluation, $course;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-
-    public function __construct($receiverName, $applierName, $evaluation, $course)
+    public function __construct($receiverName, $application, $evaluation, $course)
     {
         $this->receiverName = $receiverName;
-        $this->applierName = $applierName;
+        $this->application = $application;
         $this->evaluation = $evaluation;
         $this->course = $course;
     }
@@ -33,7 +32,7 @@ class newEvaluationNotice extends Mailable
      */
     public function build()
     {
-        $this->subject = "[IPAMS] Action Required: Evaluation Request No. " . $this->evaluation->evaluationID . " Created";
-        return $this->view('emails.ActionRequired.newevaluationnotice');
+        $this->subject = "[IPAMS] Application No. " . $this->application->applicationID . " Status Changed";
+        return $this->view('emails.Notice.applicationstatuschange');
     }
 }

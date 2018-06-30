@@ -32,7 +32,7 @@ class newMaterialRequest extends Mailable
      */
     public function build()
     {
-        $this->subject = "[IPAMS] Action Required: Application No. " . $this->application->applicationID . "Request Further Materials";
+        $this->subject = "[IPAMS] Action Required: Application No. " . $this->application->applicationID . " Request Further Materials";
         return $this->view('emails.ActionRequired.newmaterialrequest');
     }
 }
