@@ -58,14 +58,14 @@
                                     {{ $app->course->courseName }}
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs">View</button></a>
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs setAdmin">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs">View</button></a>
                                 </td>
                                 <td>
                                     @if ($app->additionalMaterialsFile)
-                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-primary btn btn-xs setAdmin">Download</button></a>
+                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-primary btn btn-xs">Download</button></a>
                                     @else
                                         No Material
                                     @endif
@@ -77,10 +77,16 @@
                                     {{ $app->status }}
                                 </td>
                                 <td>
-                                    {{ $app->evaluationResult }}
+                                    @if ($app->evaluationResult == 'Approved')
+                                        <span class="label label-success">Approved</span>
+                                    @elseif ($app->evaluationResult == 'Rejected')
+                                        <span class="label label-danger">Rejected</span>
+                                    @else
+                                        <span class="label label-info">{{ $app->evaluationResult }}</span>
+                                    @endif
                                 </td>
                                 <td>
-
+                                    <a href="/transferCourses/application/{{ $app->applicationID }}"><button class="btn btn-xs btn-info">Show</button></a>
                                 </td>
                             </tr>
                         @endforeach

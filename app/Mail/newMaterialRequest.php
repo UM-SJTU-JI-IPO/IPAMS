@@ -7,20 +7,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class newApplicationNotice extends Mailable
+class newMaterialRequest extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $receiverName, $applierName, $course;
+    public $receiverName, $application, $evaluation, $course;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($receiverName, $applierName, $course)
+    public function __construct($receiverName, $application, $evaluation, $course)
     {
         $this->receiverName = $receiverName;
-        $this->applierName = $applierName;
+        $this->application = $application;
+        $this->evaluation = $evaluation;
         $this->course = $course;
     }
 
@@ -31,7 +32,7 @@ class newApplicationNotice extends Mailable
      */
     public function build()
     {
-        $this->subject = "[IPAMS] Action Required: New Course Transfer Application Created";
-        return $this->view('emails.ActionRequired.newapplicationnotice');
+        $this->subject = "[IPAMS] Action Required: Application No. " . $this->application->applicationID . "Request Further Materials";
+        return $this->view('emails.ActionRequired.newmaterialrequest');
     }
 }

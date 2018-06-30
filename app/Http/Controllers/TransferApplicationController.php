@@ -155,7 +155,9 @@ class TransferApplicationController extends Controller
                 'evaluatorDecision' => 'Pending',
                 'evaluationStatus'  => 'Pending',
             ]);
-//            TODO Mail::to($evaluator->email)->queue(new newApplicationNotice($evaluator->name, User::find($newApplication->sjtuID)->name));
+            Mail::to($evaluator->email)->queue(new newApplicationNotice($evaluator->name,
+                                                                        User::find($newApplication->sjtuID)->name,
+                                                                        $newApplication->appliedCourse));
             $newEvaluation->save();
         }
 
@@ -176,6 +178,19 @@ class TransferApplicationController extends Controller
     {
         $courses = TransferCourse::all();
         return view('transfercourses.allcourses', ['courses' => $courses]);
+    }
+
+    public function show($applicationID)
+    {
+        $application = TransferApplication::find($applicationID);
+        $course = $application->appliedCourse;
+        $applier = $application->applier;
+        return view('transfercourses.applicationdetail',
+            [
+                'application'   => $application,
+                'course'        => $course,
+                'applier'       => $applier,
+            ]);
     }
 
 }

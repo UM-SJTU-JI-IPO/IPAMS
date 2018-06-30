@@ -29,6 +29,7 @@ Route::get('/transferCourses/allCourses','TransferApplicationController@listCour
 Route::get('/transferCourses/newApplication','TransferApplicationController@newApp')->name("newTransferApplication");
 Route::post('/transferCourses/newApplication','TransferApplicationController@create')->name("createTransferApplication");
 Route::get('/transferCourses/myApplication','TransferApplicationController@index')->name("myTransferApplications");
+Route::get('/transferCourses/application/{applicationID}','TransferApplicationController@show')->name("applicationsDetail");
 
 Route::get('/transferCourses/myEvaluation','TransferEvaluationController@index')->name("myCourseTransferEvaluations");
 Route::get('/transferCourses/myEvaluation/{evaluationID}','TransferEvaluationController@show')->name("currentEvaluation");
