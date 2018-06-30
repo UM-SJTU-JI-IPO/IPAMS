@@ -36,7 +36,7 @@
                             <th>TCAF</th>
                             <th>Syllabus</th>
                             <th>Additional Materials</th>
-                            <th>App Progress</th>
+                            <th>Current Status</th>
                             <th>Eval Type</th>
                             <th>My Decision</th>
                             <th class="text-right" data-sort-ignore="true">Detail</th>
@@ -62,14 +62,14 @@
                                     {{ $app->course->courseName }}
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-primary btn btn-xs">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->tcafFile }}"><button class="btn-info btn btn-xs">View</button></a>
                                 </td>
                                 <td>
-                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-primary btn btn-xs">View</button></a>
+                                    <a target="_blank" href="/storage/{{ $app->syllabusFile }}"><button class="btn-info btn btn-xs">View</button></a>
                                 </td>
                                 <td>
                                     @if ($app->additionalMaterialsFile)
-                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-primary btn btn-xs">Download</button></a>
+                                        <a href="/storage/{{ $app->additionalMaterialsFile }}"><button class="btn-info btn btn-xs">Download</button></a>
                                     @else
                                         No Material
                                     @endif
@@ -84,12 +84,14 @@
                                     {{ $app->evaluation->evaluatorDecision }}
                                 </td>
                                 <td>
-                                    @if ($app->evaluation->evaluationStatus != 'Decided'
-                                      && $app->evaluation->evaluationStatus != 'Declined')
-                                        <a target="_blank" href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}"><button class="btn-primary btn btn-xs">Review</button></a>
-                                    @else
-                                        <span class="label label-warning">Closed</span>
-                                    @endif
+                                    <a href="/transferCourses/myEvaluation/{{ $app->evaluation->evaluationID }}">
+                                        @if ($app->evaluation->evaluationStatus != 'Decided'
+                                          && $app->evaluation->evaluationStatus != 'Declined')
+                                            <button class="btn-primary btn btn-xs">Review</button>
+                                        @else
+                                            <button class="btn-info btn btn-xs">Show</button>
+                                        @endif
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -155,7 +155,7 @@ class TransferApplicationController extends Controller
                 'evaluatorDecision' => 'Pending',
                 'evaluationStatus'  => 'Pending',
             ]);
-            Mail::to($evaluator->email)->queue(new newApplicationNotice($evaluator->name, User::find($newApplication->sjtuID)->name));
+//            TODO Mail::to($evaluator->email)->queue(new newApplicationNotice($evaluator->name, User::find($newApplication->sjtuID)->name));
             $newEvaluation->save();
         }
 

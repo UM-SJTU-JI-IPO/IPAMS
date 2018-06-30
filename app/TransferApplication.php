@@ -35,4 +35,16 @@ class TransferApplication extends Model
                                          'evaluatorDecision','evaluatorComments','evaluationStatus',
                                          'created_at','updated_at');
     }
+
+    public function updateProgress(String $progress) {
+        $this->update([
+            'evaluationProgress'   => $progress
+        ]);
+    }
+
+    public function updateStatus(String $status) {
+        $this->update([
+            'status'   => $status
+        ]);
+    }
 }
