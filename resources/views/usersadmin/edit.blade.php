@@ -59,10 +59,10 @@
                                             <option {{ isSelected('IPO', $user->instituteRole) }} value="IPO">IPO</option>
                                             <option {{ isSelected('UC', $user->instituteRole) }} value="UC">UC</option>
                                             <option {{ isSelected('UEO', $user->instituteRole) }} value="UEO">UEO</option>
-                                            <option {{ isSelected('staff', $user->instituteRole) }} value="staff">JI Staff</option>
-                                            <option {{ isSelected('faculty', $user->instituteRole) }} value="faculty">JI Faculty</option>
-                                            <option {{ isSelected('local', $user->instituteRole) }} value="local">Local Student</option>
-                                            <option {{ isSelected('exchange', $user->instituteRole) }} value="exchange">Exchange Student</option>
+                                            <option {{ isSelected('Staff', $user->instituteRole) }} value="Staff">JI Staff</option>
+                                            <option {{ isSelected('Faculty', $user->instituteRole) }} value="Faculty">JI Faculty</option>
+                                            <option {{ isSelected('Local', $user->instituteRole) }} value="Local">Local Student</option>
+                                            <option {{ isSelected('Exchange', $user->instituteRole) }} value="Exchange">Exchange Student</option>
                                         </select>
                                     </div>
 
