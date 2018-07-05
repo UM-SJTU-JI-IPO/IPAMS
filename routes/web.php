@@ -23,6 +23,7 @@ Route::post('/user/edit', 'UserController@update');
 Route::get('/usersadmin', 'UsersManageController@index')->name("usersAdmin");
 Route::get('/usersadmin/{user_id}','UsersManageController@show');
 Route::put('/usersadmin/{user_id?}','UsersManageController@update');
+Route::post('/usersadmin/{user_id}/role','UsersManageController@updateRole');
 
 //Route::get('/transferCourses', 'TransferApplicationController@panel')->name("transferPanel");
 Route::get('/transferCourses/allCourses','TransferApplicationController@listCourses')->name("allTransferCourses");

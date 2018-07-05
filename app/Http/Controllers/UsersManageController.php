@@ -52,7 +52,7 @@ class UsersManageController extends Controller
     {
         $user = User::find($user_id);
 
-        return view('user/profile',compact($user));
+        return view('usersadmin.edit',['user' => $user]);
     }
 
     /**
@@ -84,6 +84,19 @@ class UsersManageController extends Controller
         $user->save();
 
         return response()->json(['data'=> $user]);
+    }
+
+    public function updateRole(Request $request, $user_id)
+    {
+        $user = User::find($user_id);
+
+        $user->update([
+            'instituteRole' => $request->newInstituteRole,
+        ]);
+
+        $user->save();
+
+        return redirect()->route('usersAdmin');
     }
 
     /**

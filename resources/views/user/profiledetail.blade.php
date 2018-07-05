@@ -1,8 +1,4 @@
-<div class="ibox">
-    <div class="ibox-title">
-        <h5>User Profile</h5>
-    </div>
-    <div class="ibox-content">
+<div class="ibox-content">
         <div class="row m-b-xs">
             <div class="col-md-3 col-lg-3 " align="center">
                 @if(Auth::User()->avatarPath)
@@ -101,7 +97,3 @@
             </div>
         </div>
     </div>
-    <div class="ibox-footer">
-        <a href="/user/edit" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
-    </div>
-</div>

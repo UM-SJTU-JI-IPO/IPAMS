@@ -19,7 +19,15 @@
         </div>
 
         <div class="row">
-          @include('user.profiledetail')
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>User Profile</h5>
+                </div>
+                @include('user.profiledetail')
+                <div class="ibox-footer">
+                    <a href="/user/edit" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i> Edit Profile</a>
+                </div>
+            </div>
         </div>
     </div>
 @stop

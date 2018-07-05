@@ -61,10 +61,10 @@
                                 </td>--}}
                                 <td>
                                     <div class="text-right action">
+                                        <a href="/usersadmin/{{ $user->sjtuID }}">
+                                            <button type="button" class="btn btn-info btn-xs" >View Detail</button>
+                                        </a>
                                         @if (Auth::user()->sjtuID != $user->sjtuID)
-                                            <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#changeInstRole">
-                                                Change Inst. Role
-                                            </button>
                                             @if ($user->userType != 'admin')
                                                 <button class="btn-primary btn btn-xs setAdmin" value="{{ $user->sjtuID }}-{{ $user->name }}">Set as Admin</button>
                                             @else
@@ -121,26 +121,6 @@
                             </div>
                         </div>
                     </div>
-                    {{--<div class="modal inmodal fade" id="changeInstRole" tabindex="-1" role="dialog"  aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                    <h4 class="modal-title">Change User Institute Role</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <form id="changeInstRoleForm" method="POST" action="/usersadmin/{user_id}/instituteRole">
-
-                                    </form>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--}}
                 </div>
             </div>
             <div class="col-lg-12">
