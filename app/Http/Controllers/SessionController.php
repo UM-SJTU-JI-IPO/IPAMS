@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class SessionController extends Controller
 {
@@ -16,10 +16,8 @@ class SessionController extends Controller
 
     public function destroyer()
     {
-        auth()->logout();
-
-        /*$client = new Client();
-        $res = $client->get('https://jaccount.sjtu.edu.cn/oauth2/logout?client_id=D4ao3kRItPMv9nf4e5TeNinO&retUrl=http://ipams.test/');*/
-        return redirect()->route('main');
+        Auth::logout();
+        $url = 'https://jaccount.sjtu.edu.cn/oauth2/logout?client_id=D4ao3kRItPMv9nf4e5TeNinO&retUrl=http://ipams.test/';
+        return Redirect::to($url);
     }
 }
