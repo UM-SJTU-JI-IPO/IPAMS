@@ -31,7 +31,7 @@
                         </a>
                     </div>
                 </div>
-                @include('user.profiledetail')
+                @include('usersadmin.userdetail')
             </div>
         </div>
         <div class="row">
