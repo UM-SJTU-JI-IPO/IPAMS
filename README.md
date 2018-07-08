@@ -1,5 +1,9 @@
 ## UM-SJTU JI IPAMS
 
+# This Project is permanently suspended according JI IT instructions for security concerns :unamused:
+
+Kidding Me? JI IT talk about security with you...
+
 ### Introduction
 
 This is the website for application website of [UM-SJTU Joint Institute International Programs Application and Management System](https://umji.sjtu.edu.cn/global/apply).
