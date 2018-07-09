@@ -1,8 +1,6 @@
 ## UM-SJTU JI IPAMS
 
-# This Project is permanently suspended according JI IT instructions for security concerns :unamused:
-
-Kidding Me? JI IT starts to talk about security with you...
+# This Project is permanently suspended according JI IT instructions for security concerns
 
 ### Introduction
 
